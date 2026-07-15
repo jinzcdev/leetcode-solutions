@@ -50,33 +50,32 @@ int main() { return 0; }
 // @lc code=start
 class Solution {
   public:
-    int findKthLargest(vector<int> &nums, int left, int right, int k) {
+    int findKthLargest(vector<int> &nums, int k, int left, int right) {
         if (left >= right) {
             return nums[left];
         }
         int index = left + rand() % (right - left + 1);
         swap(nums[left], nums[index]);
-        int l = left, r = right, pivot = nums[l];
+        int l = left, r = right, pivot = nums[left];
         while (l < r) {
-            while (l < r && nums[r] <= pivot)
-                r--;
-            nums[l++] = nums[r];
-            while (l < r && nums[l] >= pivot)
-                l++;
-            nums[r--] = nums[l];
+            while (l < r && nums[r] >= pivot) r--;
+            nums[l] = nums[r];
+            while (l < r && nums[l] <= pivot) l++;
+            nums[r] = nums[l];
         }
         nums[l] = pivot;
         if (l == k) {
             return pivot;
         }
-        return l < k ? findKthLargest(nums, l + 1, right, k)
-                     : findKthLargest(nums, left, l - 1, k);
+        return l < k ? findKthLargest(nums, k, l + 1, right)
+                     : findKthLargest(nums, k, left, l - 1);
     }
     int findKthLargest(vector<int> &nums, int k) {
         if (nums.size() < k) {
             return 0;
         }
-        return findKthLargest(nums, 0, nums.size() - 1, k - 1);
+        int n = nums.size();
+        return findKthLargest(nums, n - k, 0, n - 1);
     }
 };
 // @lc code=end
