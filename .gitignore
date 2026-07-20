@@ -58,4 +58,6 @@ a
 */**/.DS_Store
 # PAT/Advanced/Graph/.DS_Store
 *.dSYM
-*/**/*.dSYM
+*/**/*.dSYM.mcp.json
+
+.mcp.json
