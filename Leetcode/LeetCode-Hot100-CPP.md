@@ -1990,38 +1990,20 @@ public:
 **题目描述：** 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
 
 ```cpp
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-// #include <bits/stdc++.h>
-// using namespace std;
-// struct TreeNode {
-//     int val;
-//     TreeNode* left;
-//     TreeNode* right;
-//     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-// };
 class Solution {
-   public:
-    TreeNode* ans;
+public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        recurseTree(root, p, q);
-        return ans;
-    }
-
-    bool recurseTree(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if (!root) return false;
-        int left = recurseTree(root->left, p, q) ? 1 : 0;
-        int right = recurseTree(root->right, p, q);
-        int mid = (root == q || root == p) ? 1 : 0;
-        if (mid + left + right >= 2) ans = root;
-        return mid + left + right > 0;
+        if (root == nullptr || root == p || root == q) {
+            return root;
+        }
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+        // 如果左右子树都找到了 p 或 q 说明 p 和 q 分别位于 root 的左右子树
+        // 说明当前 root 就是 p 和 q 的最近公共祖先
+        if (left != nullptr && right != nullptr) {
+            return root;
+        }
+        return left == nullptr ? right : left;
     }
 };
 ```
@@ -2042,6 +2024,10 @@ class Solution {
 class Solution {
 public:
     int ans = INT_MIN;
+    /*
+        把 dfs 递归构建为单边的最大路径和，在递归的过程中去计算以结点为根的双边最大路径和。
+        注意负数贡献应取 0，如果单侧提供的最大路径值为负数，应该丢弃。
+    */
     int dfs(TreeNode* root) {
         if (!root) return 0;
         int left = max(dfs(root->left), 0);
