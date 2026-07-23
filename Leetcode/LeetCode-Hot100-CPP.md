@@ -3189,15 +3189,20 @@ public:
 class Solution {
 public:
     vector<int> partitionLabels(string s) {
-        int last[26] = {};
-        for (int i = 0; i < (int)s.size(); i++) last[s[i]-'a'] = i;
-        vector<int> ans;
+        if (s.empty()) {
+            return {};
+        }
+        int last[128] = {0};
+        for (int i = 0; i < s.size(); i++) {
+            last[s[i]] = i;
+        }
         int start = 0, end = 0;
-        for (int i = 0; i < (int)s.size(); i++) {
-            end = max(end, last[s[i]-'a']); // 扩展片段右端
-            if (i == end) {
+        vector<int> ans;
+        for (int i = 0; i < s.size(); i++) {
+            end = max(end, last[s[i]]); // 不断扩展最大右区间
+            if (end == i) { // 直到当前字母的最大位置等于当前位置，说明已经不能扩展了
                 ans.push_back(end - start + 1);
-                start = i + 1;
+                start = end + 1;
             }
         }
         return ans;
