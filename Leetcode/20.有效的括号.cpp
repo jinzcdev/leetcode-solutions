@@ -80,9 +80,12 @@
 using namespace std;
 // @lc code=start
 class Solution {
-   public:
+  public:
     bool isValid(string s) {
-        unordered_map<char, char> mp = {{'(', ')'}, {'[', ']'}, {'{', '}'}};
+        if (s.size() % 2 == 1) {
+            return false;
+        }
+        unordered_map<char, char> mp{{'(', ')'}, {'[', ']'}, {'{', '}'}};
         stack<char> st;
         for (auto ch : s) {
             if (ch == '(' || ch == '[' || ch == '{') {
