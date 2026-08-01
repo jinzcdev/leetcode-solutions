@@ -2058,24 +2058,32 @@ public:
 
 ```cpp
 class Solution {
-private:
+  public:
+    vector<vector<bool>> vis;
     int m, n;
-    bool vis[310][310] = {false};
     bool isValid(int x, int y) { return x >= 0 && x < m && y >= 0 && y < n; }
     void dfs(vector<vector<char>> &grid, int x, int y) {
-        if (!isValid(x, y) || vis[x][y] || grid[x][y] == '0') return;
+        if (!isValid(x, y) || vis[x][y] || grid[x][y] == '0') {
+            return;
+        }
         vis[x][y] = true;
-        dfs(grid, x + 1, y); dfs(grid, x - 1, y);
-        dfs(grid, x, y + 1); dfs(grid, x, y - 1);
+        dfs(grid, x + 1, y);
+        dfs(grid, x - 1, y);
+        dfs(grid, x, y + 1);
+        dfs(grid, x, y - 1);
     }
-public:
     int numIslands(vector<vector<char>> &grid) {
-        if (grid.empty()) return 0;
-        m = grid.size(); n = grid[0].size();
+        if (grid.empty()) {
+            return 0;
+        }
+        m = grid.size();
+        n = grid[0].size();
+        vis.resize(m, vector<bool>(n));
+
         int ans = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == '1' && !vis[i][j]) {
+                if (!vis[i][j] && grid[i][j] == '1') {
                     dfs(grid, i, j);
                     ans++;
                 }
@@ -2086,9 +2094,9 @@ public:
 };
 ```
 
-**核心思路：** DFS/BFS 遍历网格，遇到 '1' 就进行深度优先搜索，将相连的陆地全部标记为已访问，岛屿计数 +1。
+**核心思路：** DFS 遍历网格：用 `vector<vector<bool>> vis` 标记已访问的陆地，遇到未访问的 '1' 就启动 DFS 将相连陆地全部标记，岛屿计数 +1。vis 在 `numIslands` 中动态 `resize` 适配网格大小。
 
-**易错点：** DFS 可能导致栈溢出（岛屿很大时），可用 BFS 或并查集；注意边界检查。
+**易错点：** DFS 可能导致栈溢出（岛屿很大时），可用 BFS 或并查集；`vis` 必须在遍历前 resize 否则访问越界；注意 `isValid` 边界检查的四个条件。
 
 ---
 
@@ -2100,11 +2108,14 @@ public:
 
 ```cpp
 class Solution {
-   public:
-    int orangesRotting(vector<vector<int>>& grid) {
-        int m = grid.size(), n = grid[0].size(), freshCnt = 0, mins = 0;
-        int X[] = {0, 0, 1, -1}, Y[] = {1, -1, 0, 0};
+  public:
+    int orangesRotting(vector<vector<int>> &grid) {
+        if (grid.empty()) {
+            return 0;
+        }
         queue<pair<int, int>> q;
+        int m = grid.size(), n = grid[0].size();
+        int freshCnt = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == 1) {
@@ -2114,18 +2125,19 @@ class Solution {
                 }
             }
         }
-        if (freshCnt == 0) return 0;
+        if (freshCnt == 0) {
+            return 0;
+        }
+        int d[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        int step = 0;
         while (!q.empty() && freshCnt != 0) {
-            int size = q.size();
-            mins++;
-
-            while (size--) {
+            int k = q.size();
+            for (int i = 0; i < k; i++) {
                 auto [x, y] = q.front();
                 q.pop();
-
-                for (int i = 0; i < 4; i++) {
-                    int newX = x + X[i];
-                    int newY = y + Y[i];
+                for (int j = 0; j < 4; j++) {
+                    int newX = x + d[j][0];
+                    int newY = y + d[j][1];
                     if (newX >= 0 && newX < m && newY >= 0 && newY < n &&
                         grid[newX][newY] == 1) {
                         freshCnt--;
@@ -2134,15 +2146,16 @@ class Solution {
                     }
                 }
             }
+            step++;
         }
-        return freshCnt == 0 ? mins : -1;
+        return freshCnt <= 0 ? step : -1;
     }
 };
 ```
 
-**核心思路：** BFS：将所有腐烂橘子入队，每轮 BFS 扩散一层（分钟数 +1），直到没有新鲜橘子或队列为空。
+**核心思路：** BFS 层序遍历：先将所有腐烂橘子（值为 2）入队，统计新鲜橘子数量。每轮 BFS 处理当前队列中所有腐烂橘子，向四个方向扩散感染新鲜橘子，`freshCnt--` 并标记为腐烂。每轮结束 `step++`，直到没有新鲜橘子或队列为空。
 
-**易错点：** BFS 层序遍历需要记录每层的 size；初始没有新鲜橘子直接返回 0；最后有剩余新鲜橘子返回 -1。
+**易错点：** 必须先检查 `grid.empty()`；每轮 BFS 需要用 `k = q.size()` 固定当前层大小，否则 step 计数不准；初始没有新鲜橘子直接返回 0；最后 `freshCnt > 0` 返回 -1。
 
 ---
 
@@ -2154,35 +2167,39 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
-    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        vector<int> e[numCourses];
-        vector<int> ind(numCourses, 0);
-        for (int i = 0; i < prerequisites.size(); i++) {
-            auto x = prerequisites[i];
-            ind[x[0]]++;
-            e[x[1]].emplace_back(x[0]);
+  public:
+    bool canFinish(int numCourses, vector<vector<int>> &prerequisites) {
+        vector<vector<int>> e(numCourses);
+        vector<int> ind(numCourses);
+        for (const auto &it : prerequisites) {
+            e[it[1]].push_back(it[0]);
+            ind[it[0]]++;
         }
         queue<int> q;
+        int cnt = 0;
         for (int i = 0; i < numCourses; i++) {
-            if (ind[i] == 0) q.push(i);
-        }
-        unordered_set<int> seen;
-        while (!q.empty()) {
-            int now = q.front(); q.pop();
-            seen.insert(now);
-            for (auto it : e[now]) {
-                if (--ind[it] == 0) q.push(it);
+            if (ind[i] == 0) {
+                q.push(i);
             }
         }
-        return seen.size() == numCourses;
+        while (!q.empty()) {
+            int now = q.front();
+            q.pop();
+            cnt++;
+            for (auto it : e[now]) {
+                if (--ind[it] == 0) {
+                    q.push(it);
+                }
+            }
+        }
+        return cnt == numCourses;
     }
 };
 ```
 
-**核心思路：** 拓扑排序（BFS）：构建邻接表和入度数组，入度为 0 的节点入队，BFS 过程中减少入度。最终检查是否所有节点都被访问。
+**核心思路：** 拓扑排序（BFS Kahn 算法）：构建邻接表 `vector<vector<int>> e` 和入度数组 `ind`。先将所有入度为 0 的节点入队，BFS 过程中每弹出一个节点 `cnt++`，遍历其邻接节点并将入度减 1，入度变为 0 时入队。最后 `cnt == numCourses` 说明无环可完成。
 
-**易错点：** 有向图的环检测；prerequisites[i] = [ai, bi] 表示 bi → ai。
+**易错点：** `prerequisites[i] = [ai, bi]` 表示 bi → ai（先修 bi 才能学 ai），建图时方向不能反；用 `cnt` 计数器比 `unordered_set` 更简洁高效；注意 `const auto &` 遍历避免拷贝。
 
 ---
 
@@ -2194,43 +2211,49 @@ public:
 
 ```cpp
 class Trie {
-private:
-    vector<Trie*> children;
-    bool flag;
-    Trie* searchPrefix(string prefix) {
-        Trie* node = this;
-        for (char ch : prefix) {
-            int index = ch - 'a';
-            if (node->children[index] == nullptr) return nullptr;
-            node = node->children[index];
-        }
-        return node;
-    }
-public:
-    Trie() { this->children = vector<Trie*>(26); this->flag = false; }
+  public:
+    unordered_map<char, Trie *> children;
+    bool isWord;
+    Trie() { this->isWord = false; }
+
     void insert(string word) {
-        Trie* node = this;
-        for (char ch : word) {
-            int index = ch - 'a';
-            if (node->children[index] == nullptr)
-                node->children[index] = new Trie();
-            node = node->children[index];
+        Trie *node = this;
+        for (auto ch : word) {
+            if (node->children[ch] == nullptr) {
+                node->children[ch] = new Trie();
+            }
+            node = node->children[ch];
         }
-        node->flag = true;
+        node->isWord = true;
     }
+
     bool search(string word) {
-        Trie* node = this->searchPrefix(word);
-        return node != nullptr && node->flag;
+        Trie *node = this;
+        for (auto ch : word) {
+            if (node->children[ch] == nullptr) {
+                return false;
+            }
+            node = node->children[ch];
+        }
+        return node != nullptr && node->isWord;
     }
+
     bool startsWith(string prefix) {
-        return this->searchPrefix(prefix) != nullptr;
+        Trie *node = this;
+        for (auto ch : prefix) {
+            if (node->children[ch] == nullptr) {
+                return false;
+            }
+            node = node->children[ch];
+        }
+        return node != nullptr;
     }
 };
 ```
 
-**核心思路：** 每个节点包含 26 个子节点指针和一个 isEnd 标志。插入时沿路径创建节点，搜索时沿路径检查。
+**核心思路：** 每个节点包含 `unordered_map<char, Trie*> children` 和一个 `isWord` 标志。`insert` 沿路径创建节点，末尾设 `isWord = true`；`search` 沿路径检查，最后需验证 `isWord`；`startsWith` 只需检查路径是否存在即可。
 
-**易错点：** search 和 startsWith 的区别：search 需要检查最后一个节点的 isEnd 标志。
+**易错点：** `search` 和 `startsWith` 的区别：`search` 需要检查末尾节点的 `isWord` 标志，`startsWith` 不需要；使用 `unordered_map` 代替固定 26 大小的数组，更节省空间但需注意指针判空；`insert` 时 `node->children[ch]` 不存在才创建新节点。
 
 ---
 

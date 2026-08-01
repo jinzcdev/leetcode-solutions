@@ -69,19 +69,15 @@ int main() { return 0; }
 // @lc code=start
 class Trie {
   public:
-    struct Node {
-        unordered_map<char, Node *> children;
-        bool isWord;
-        Node() : isWord(false) {}
-    };
-    Node *trie = new Node();
-    Trie() {}
+    unordered_map<char, Trie *> children;
+    bool isWord;
+    Trie() { this->isWord = false; }
 
     void insert(string word) {
-        Node *node = trie;
+        Trie *node = this;
         for (auto ch : word) {
             if (node->children[ch] == nullptr) {
-                node->children[ch] = new Node();
+                node->children[ch] = new Trie();
             }
             node = node->children[ch];
         }
@@ -89,7 +85,7 @@ class Trie {
     }
 
     bool search(string word) {
-        Node *node = trie;
+        Trie *node = this;
         for (auto ch : word) {
             if (node->children[ch] == nullptr) {
                 return false;
@@ -100,7 +96,7 @@ class Trie {
     }
 
     bool startsWith(string prefix) {
-        Node *node = trie;
+        Trie *node = this;
         for (auto ch : prefix) {
             if (node->children[ch] == nullptr) {
                 return false;
