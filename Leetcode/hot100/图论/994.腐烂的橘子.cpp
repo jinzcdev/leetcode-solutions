@@ -6,11 +6,11 @@
  * https://leetcode.cn/problems/rotting-oranges/description/
  *
  * algorithms
- * Medium (54.33%)
- * Likes:    1022
+ * Medium (55.65%)
+ * Likes:    1188
  * Dislikes: 0
- * Total Accepted:    299.7K
- * Total Submissions: 551.6K
+ * Total Accepted:    494.3K
+ * Total Submissions: 888.1K
  * Testcase Example:  '[[2,1,1],[1,1,0],[0,1,1]]'
  *
  * 在给定的 m x n 网格 grid 中，每个单元格可以有以下三个值之一：
@@ -66,17 +66,19 @@
  *
  *
  */
-
 #include <bits/stdc++.h>
 using namespace std;
-
+int main() { return 0; }
 // @lc code=start
 class Solution {
-   public:
-    int orangesRotting(vector<vector<int>>& grid) {
-        int m = grid.size(), n = grid[0].size(), freshCnt = 0, mins = 0;
-        int X[] = {0, 0, 1, -1}, Y[] = {1, -1, 0, 0};
+  public:
+    int orangesRotting(vector<vector<int>> &grid) {
+        if (grid.empty()) {
+            return 0;
+        }
         queue<pair<int, int>> q;
+        int m = grid.size(), n = grid[0].size();
+        int freshCnt = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == 1) {
@@ -86,28 +88,31 @@ class Solution {
                 }
             }
         }
-        if (freshCnt == 0) return 0;
+        if (freshCnt == 0) {
+            return 0;
+        }
+        int d[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        int step = 0;
         while (!q.empty() && freshCnt != 0) {
-            int size = q.size();
-            mins++;
-
-            while (size--) {
-                auto [x, y] = q.front();
+            int k = q.size();
+            for (int i = 0; i < k; i++) {
+                auto node = q.front();
                 q.pop();
-
-                for (int i = 0; i < 4; i++) {
-                    int newX = x + X[i];
-                    int newY = y + Y[i];
+                for (int j = 0; j < 4; j++) {
+                    int newX = node.first + d[j][0];
+                    int newY = node.second + d[j][1];
                     if (newX >= 0 && newX < m && newY >= 0 && newY < n &&
                         grid[newX][newY] == 1) {
                         freshCnt--;
+                        // 这里之前写错了 grid[newX][newY] == 2
                         grid[newX][newY] = 2;
                         q.push({newX, newY});
                     }
                 }
             }
+            step++;
         }
-        return freshCnt == 0 ? mins : -1;
+        return freshCnt <= 0 ? step : -1;
     }
 };
 // @lc code=end
