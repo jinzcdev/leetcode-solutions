@@ -75,7 +75,7 @@ class Trie {
 
     void insert(string word) {
         Trie *node = this;
-        for (auto ch : word) {
+        for (const auto &ch : word) {
             if (node->children[ch] == nullptr) {
                 node->children[ch] = new Trie();
             }
@@ -85,25 +85,21 @@ class Trie {
     }
 
     bool search(string word) {
-        Trie *node = this;
-        for (auto ch : word) {
-            if (node->children[ch] == nullptr) {
-                return false;
-            }
-            node = node->children[ch];
-        }
+        Trie *node = searchPrefix(word);
         return node != nullptr && node->isWord;
     }
 
-    bool startsWith(string prefix) {
+    bool startsWith(string prefix) { return searchPrefix(prefix) != nullptr; }
+
+    Trie *searchPrefix(string prefix) {
         Trie *node = this;
-        for (auto ch : prefix) {
+        for (const auto &ch : prefix) {
             if (node->children[ch] == nullptr) {
-                return false;
+                return nullptr;
             }
             node = node->children[ch];
         }
-        return node != nullptr;
+        return node;
     }
 };
 // @lc code=end

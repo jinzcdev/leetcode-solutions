@@ -46,11 +46,9 @@
  * 进阶：你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？
  *
  */
-
 #include <bits/stdc++.h>
 using namespace std;
 int main() { return 0; }
-
 struct ListNode {
     int val;
     ListNode *next;
@@ -58,16 +56,12 @@ struct ListNode {
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
-
 // @lc code=start
 class Solution {
   public:
     ListNode *reverseList(ListNode *head) {
-        if (!head || !head->next) {
-            return head;
-        }
         ListNode *pre = nullptr, *p = head;
-        while (p) {
+        while (p != nullptr) {
             ListNode *q = p;
             p = p->next;
             q->next = pre;
@@ -75,16 +69,16 @@ class Solution {
         }
         return pre;
     }
+
     bool isPalindrome(ListNode *head) {
-        if (!head || !head->next) {
+        if (head == nullptr || head->next == nullptr) {
             return true;
         }
-        ListNode *slow = head;
-        ListNode *fast = head;
-        while (fast && fast->next) {
+        ListNode *slow = head, *fast = head;
+        while (fast != nullptr) {
             slow = slow->next;
             fast = fast->next;
-            if (fast) {
+            if (fast != nullptr) {
                 fast = fast->next;
             }
         }
