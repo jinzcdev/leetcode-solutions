@@ -69,35 +69,34 @@ struct ListNode {
 class Solution {
   public:
     ListNode *sortList(ListNode *head) {
-        if (head == nullptr || head->next == nullptr) {
+        if (!head || !head->next) {
             return head;
         }
+        // 快慢指针找中点，断开成两半
+        // 注意这里 fast 不能从 head
+        // 开始，而是从下一个开始（可以思考只有两个节点时的情况）
         ListNode *slow = head, *fast = head->next;
-        while (fast != nullptr && fast->next != nullptr) {
+        while (fast && fast->next) {
             slow = slow->next;
             fast = fast->next->next;
         }
-        ListNode *l1 = sortList(slow->next);
-        slow->next = nullptr;
-        ListNode *l2 = sortList(head);
-        ListNode *dummyHead = new ListNode(), *r = dummyHead;
-        ListNode *p = l1, *q = l2;
-        while (p && q) {
-            if (p->val <= q->val) {
-                r->next = p;
-                p = p->next;
+        ListNode *mid = slow->next;
+        slow->next = nullptr; // 断开两个链表
+        return merge(sortList(head), sortList(mid));
+    }
+    ListNode *merge(ListNode *a, ListNode *b) {
+        ListNode *dummyHead = new ListNode(), *p = dummyHead;
+        while (a && b) {
+            if (a->val < b->val) {
+                p->next = a;
+                a = a->next;
             } else {
-                r->next = q;
-                q = q->next;
+                p->next = b;
+                b = b->next;
             }
-            r = r->next;
+            p = p->next;
         }
-        if (p) {
-            r->next = p;
-        }
-        if (q) {
-            r->next = q;
-        }
+        p->next = a ? a : b;
         return dummyHead->next;
     }
 };

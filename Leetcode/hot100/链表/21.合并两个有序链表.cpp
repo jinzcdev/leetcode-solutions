@@ -79,12 +79,7 @@ class Solution {
             }
             r = r->next;
         }
-        if (p != nullptr) {
-            r->next = p;
-        }
-        if (q != nullptr) {
-            r->next = q;
-        }
+        r->next = p ? p : q;
         return dummyHead->next;
     }
 };

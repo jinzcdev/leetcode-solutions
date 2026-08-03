@@ -1,6 +1,6 @@
 # LeetCode Hot 100 题解（C++）
 
-> 共收录 Hot 100 全部 **100** 道题目（已 AC **80** 道，未 AC **20** 道参考题解）。
+> 共收录 Hot 100 全部 **100** 道题目（已 AC **81** 道，未 AC **19** 道参考题解）。
 > 按 `top-100.json` 知识点分类；未 AC 题目在标题与目录中标注，代码为参考实现。
 > 每题包含：题目描述、C++ 代码、时空复杂度、核心考点、核心思路、易错点。
 
@@ -53,7 +53,7 @@
   - [两两交换链表中的节点](#9-两两交换链表中的节点)
   - [K 个一组翻转链表](#10-k-个一组翻转链表)
   - [随机链表的复制](#11-随机链表的复制)
-  - [排序链表（未 AC）](#12-排序链表)
+  - [排序链表](#12-排序链表)
   - [合并 K 个升序链表](#13-合并-k-个升序链表)
   - [LRU 缓存](#14-lru-缓存)
 
@@ -958,12 +958,12 @@ public:
 
 ```cpp
 class Solution {
-public:
+  public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode *p = headA, *q = headB;
         while (p != q) {
-            p = p == nullptr ? headB : p->next;
-            q = q == nullptr ? headA : q->next;
+            p = p ? p->next : headB;
+            q = q ? q->next : headA;
         }
         return p;
     }
@@ -984,11 +984,8 @@ public:
 
 ```cpp
 class Solution {
-public:
-    ListNode* reverseList(ListNode* head) {
-        if (head == nullptr || head->next == nullptr) {
-            return head;
-        }
+  public:
+    ListNode *reverseList(ListNode *head) {
         ListNode *pre = nullptr, *p = head;
         while (p != nullptr) {
             ListNode *q = p;
@@ -1017,11 +1014,8 @@ public:
 class Solution {
   public:
     ListNode *reverseList(ListNode *head) {
-        if (!head || !head->next) {
-            return head;
-        }
         ListNode *pre = nullptr, *p = head;
-        while (p) {
+        while (p != nullptr) {
             ListNode *q = p;
             p = p->next;
             q->next = pre;
@@ -1029,16 +1023,16 @@ class Solution {
         }
         return pre;
     }
+
     bool isPalindrome(ListNode *head) {
-        if (!head || !head->next) {
+        if (head == nullptr || head->next == nullptr) {
             return true;
         }
-        ListNode *slow = head;
-        ListNode *fast = head;
-        while (fast && fast->next) {
+        ListNode *slow = head, *fast = head;
+        while (fast != nullptr) {
             slow = slow->next;
             fast = fast->next;
-            if (fast) {
+            if (fast != nullptr) {
                 fast = fast->next;
             }
         }
@@ -1069,17 +1063,21 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
-    bool hasCycle(ListNode* head) {
+  public:
+    bool hasCycle(ListNode *head) {
         if (head == nullptr || head->next == nullptr) {
             return false;
         }
         ListNode *slow = head, *fast = head->next;
         while (fast != nullptr) {
-            if (slow == fast) return true;
+            if (slow == fast) {
+                return true;
+            }
             slow = slow->next;
             fast = fast->next;
-            if (fast != nullptr) fast = fast->next;
+            if (fast != nullptr) {
+                fast = fast->next;
+            }
         }
         return false;
     }
@@ -1100,18 +1098,20 @@ public:
 
 ```cpp
 class Solution {
-public:
-    ListNode* detectCycle(ListNode* head) {
+  public:
+    ListNode *detectCycle(ListNode *head) {
         if (head == nullptr || head->next == nullptr) {
             return nullptr;
         }
         ListNode *slow = head, *fast = head;
         while (fast != nullptr) {
             slow = slow->next;
-            if (fast->next == nullptr) return nullptr;
+            if (fast->next == nullptr) {
+                return nullptr;
+            }
             fast = fast->next->next;
             if (slow == fast) {
-                ListNode* p = head;
+                ListNode *p = head;
                 while (p != slow) {
                     p = p->next;
                     slow = slow->next;
@@ -1137,20 +1137,13 @@ public:
 **题目描述：** 将两个升序链表合并为一个新的升序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
 
 ```cpp
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
-public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ListNode *L = new ListNode(), *r = L;
+  public:
+    ListNode *mergeTwoLists(ListNode *list1, ListNode *list2) {
+        if (list1 == nullptr || list2 == nullptr) {
+            return list1 == nullptr ? list2 : list1;
+        }
+        ListNode *dummyHead = new ListNode(), *r = dummyHead;
         ListNode *p = list1, *q = list2;
         while (p != nullptr && q != nullptr) {
             if (p->val <= q->val) {
@@ -1162,9 +1155,8 @@ public:
             }
             r = r->next;
         }
-        if (p != nullptr) r->next = p;
-        if (q != nullptr) r->next = q;
-        return L->next;
+        r->next = p ? p : q;
+        return dummyHead->next;
     }
 };
 ```
@@ -1183,33 +1175,33 @@ public:
 
 ```cpp
 class Solution {
-public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        if (l1 == nullptr || l2 == nullptr) {
-            return l1 == nullptr ? l2 : l1;
+  public:
+    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+        if (!l1 || !l2) {
+            return l1 ? l1 : l2;
         }
-        ListNode *dummyHead = new ListNode(), *r = dummyHead;
         ListNode *p = l1, *q = l2;
-        int carry = 0, sum;
-        while (p != nullptr || q != nullptr) {
-            if (p == nullptr) {
-                sum = carry + q->val;
+        int carry = 0, sum = 0;
+        ListNode *dummyHead = new ListNode(), *r = dummyHead;
+        while (p || q) {
+            if (p && q) {
+                sum = p->val + q->val + carry;
+                p = p->next;
                 q = q->next;
-            } else if (q == nullptr) {
-                sum = carry + p->val;
+            } else if (p) {
+                sum = p->val + carry;
                 p = p->next;
             } else {
-                sum = carry + p->val + q->val;
-                p = p->next;
+                sum = q->val + carry;
                 q = q->next;
             }
-            ListNode* t = new ListNode(sum % 10);
-            r->next = t;
-            r = t;
+            ListNode *node = new ListNode(sum % 10);
+            r->next = node;
+            r = node;
             carry = sum / 10;
         }
-        if (carry != 0) {
-            r->next = new ListNode(1);
+        if (carry) {
+            r->next = new ListNode(carry);
         }
         return dummyHead->next;
     }
@@ -1232,14 +1224,14 @@ public:
 class Solution {
   public:
     ListNode *removeNthFromEnd(ListNode *head, int n) {
-        if (head == nullptr) {
-            return head;
+        if (head == nullptr || n <= 0) {
+            return nullptr;
         }
-        ListNode *p = head;
-        for (int i = 0; i < n && p != nullptr; i++) {
-            p = p->next;
+        ListNode *fast = head;
+        for (int i = 0; i < n && fast != nullptr; i++) {
+            fast = fast->next;
         }
-        if (p == nullptr) {
+        if (fast == nullptr) {
             /*
             p 为空说明删除的是倒数第 n
             个节点（也就是第一个节点），也可能是删除了倒数第 n + m (m > 0)
@@ -1247,14 +1239,12 @@ class Solution {
             */
             return head->next;
         }
-        ListNode *slow = head, *fast = p;
+        ListNode *slow = head;
         while (fast->next != nullptr) {
             slow = slow->next;
             fast = fast->next;
         }
-        if (slow->next != nullptr) {
-            slow->next = slow->next->next;
-        }
+        slow->next = slow->next->next;
         return head;
     }
 };
@@ -1274,15 +1264,14 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
-    ListNode* swapPairs(ListNode* head) {
+  public:
+    ListNode *swapPairs(ListNode *head) {
         if (head == nullptr || head->next == nullptr) {
             return head;
         }
-        ListNode* node = swapPairs(head->next->next);
-        ListNode* q = head->next;
-        head->next = node;
-        q->next = head;
+        ListNode *p = head, *q = head->next;
+        p->next = swapPairs(q->next);
+        q->next = p;
         return q;
     }
 };
@@ -1385,34 +1374,43 @@ public:
 
 ### 12. 排序链表
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/sort-list/) | 🟡 中等 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/sort-list/) | 🟡 中等
 
 **题目描述：** 给你链表的头结点 head ，请将其按升序排列并返回排序后的链表。要求时间复杂度 O(n log n)。
 
 ```cpp
 class Solution {
-public:
-    ListNode* sortList(ListNode* head) {
-        if (!head || !head->next) return head;
+  public:
+    ListNode *sortList(ListNode *head) {
+        if (!head || !head->next) {
+            return head;
+        }
         // 快慢指针找中点，断开成两半
+        // 注意这里 fast 不能从 head
+        // 开始，而是从下一个开始（可以思考只有两个节点时的情况）
         ListNode *slow = head, *fast = head->next;
         while (fast && fast->next) {
             slow = slow->next;
             fast = fast->next->next;
         }
-        ListNode* mid = slow->next;
-        slow->next = nullptr;
+        ListNode *mid = slow->next;
+        slow->next = nullptr; // 断开两个链表
         return merge(sortList(head), sortList(mid));
     }
-    ListNode* merge(ListNode* a, ListNode* b) {
-        ListNode dummy(0), *p = &dummy;
+    ListNode *merge(ListNode *a, ListNode *b) {
+        ListNode *dummyHead = new ListNode(), *p = dummyHead;
         while (a && b) {
-            if (a->val < b->val) { p->next = a; a = a->next; }
-            else { p->next = b; b = b->next; }
+            if (a->val < b->val) {
+                p->next = a;
+                a = a->next;
+            } else {
+                p->next = b;
+                b = b->next;
+            }
             p = p->next;
         }
         p->next = a ? a : b;
-        return dummy.next;
+        return dummyHead->next;
     }
 };
 ```
@@ -1421,9 +1419,9 @@ public:
 
 **核心考点：** 链表、双指针、分治、排序、归并排序
 
-**核心思路：** 链表归并排序：快慢指针拆成两半，递归排序后再合并。
+**核心思路：** 链表归并排序：快慢指针找中点，断开后分别递归排序左右两半，最后合并两个有序链表。合并使用虚拟头节点简化边界处理。
 
-**易错点：** 快慢指针初始 `fast=head->next` 才能让 slow 停在左半末尾并正确断开；注意空链表与单节点边界。
+**易错点：** 快慢指针初始 `fast = head->next` 才能让 slow 停在左半末尾；断开时先递归右半再断开（`slow->next = nullptr`），避免丢失右半引用；注意空链表与单节点边界。
 
 ---
 
