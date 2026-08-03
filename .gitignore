@@ -56,8 +56,7 @@ a
 /.DS_Store
 /**/a.dSYM
 */**/.DS_Store
-# PAT/Advanced/Graph/.DS_Store
 *.dSYM
-*/**/*.dSYM.mcp.json
+*/**/*.dSYM
 
 .mcp.json
