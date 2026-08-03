@@ -1821,17 +1821,21 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
-    int kthSmallest(TreeNode* root, int k) {
-        stack<TreeNode*> s;
-        TreeNode* p = root;
-        int cnt = 0;
-        while (!s.empty() || p != NULL) {
-            for (;p != NULL; p = p->left) s.push(p);
-            p = s.top(); s.pop();
-            cnt++;
-            if (cnt == k) return p->val;
-            p = p->right;
+  public:
+    int kthSmallest(TreeNode *root, int k) {
+        stack<TreeNode *> st;
+        TreeNode *p = root;
+        while (!st.empty() || p) {
+            if (p) {
+                st.push(p);
+                p = p->left;
+            } else {
+                if (--k == 0) {
+                    return st.top()->val;
+                }
+                p = st.top()->right;
+                st.pop();
+            }
         }
         return -1;
     }
