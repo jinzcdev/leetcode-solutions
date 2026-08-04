@@ -11,8 +11,7 @@
  * Dislikes: 0
  * Total Accepted:    983.6K
  * Total Submissions: 1.6M
- * Testcase Example:
- '["MinStack","push","push","push","getMin","pop","top","getMin"]\n' +
+ * Testcase Example:  '["MinStack","push","push","push","getMin","pop","top","getMin"]\n' +
   '[[],[-2],[0],[-3],[],[],[],[]]'
  *
  * 设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。
@@ -40,14 +39,14 @@
  * [null,null,null,null,-3,null,0,-2]
  *
  * 解释：
- * MinStack mn = new MinStack();
- * mn.push(-2);
- * mn.push(0);
- * mn.push(-3);
- * mn.getMin();   --> 返回 -3.
- * mn.pop();
- * mn.top();      --> 返回 0.
- * mn.getMin();   --> 返回 -2.
+ * MinStack minStack = new MinStack();
+ * minStack.push(-2);
+ * minStack.push(0);
+ * minStack.push(-3);
+ * minStack.getMin();   --> 返回 -3.
+ * minStack.pop();
+ * minStack.top();      --> 返回 0.
+ * minStack.getMin();   --> 返回 -2.
  *
  *
  *
@@ -66,14 +65,14 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class MinStack {
-  private:
+   private:
     stack<int> st, mn;
 
-  public:
+   public:
     MinStack() {}
     void push(int value) {
         st.push(value);
-        mn.push(mn.empty() ? value : min(mn.top(), mn.top()));
+        mn.push(mn.empty() ? value : min(value, mn.top()));
     }
     void pop() {
         if (st.empty()) {
