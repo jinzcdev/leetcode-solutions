@@ -6,8 +6,8 @@
  * https://leetcode.cn/problems/merge-k-sorted-lists/description/
  *
  * algorithms
- * Hard (63.74%)
- * Likes:    3231
+ * Hard (63.98%)
+ * Likes:    3260
  * Dislikes: 0
  * Total Accepted:    1.3M
  * Total Submissions: 2M
@@ -61,45 +61,37 @@
  */
 #include <bits/stdc++.h>
 using namespace std;
+int main() { return 0; }
 struct ListNode {
     int val;
-    ListNode *next;
+    ListNode* next;
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
-int main() {}
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 // @lc code=start
 class Solution {
-  public:
-    ListNode *mergeKLists(vector<ListNode *> &lists) {
-        int n = lists.size();
-        ListNode *dummyHead = new ListNode(), *r = dummyHead;
-        auto cmp = [](ListNode *a, ListNode *b) { return a->val > b->val; };
-        priority_queue<ListNode *, vector<ListNode *>, decltype(cmp)> minHeap(
-            cmp);
-        for (int i = 0; i < n; i++) {
-            minHeap.push(lists[i]);
-            lists[i] = lists[i]->next;
+   public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if (lists.empty()) {
+            return nullptr;
         }
+        auto cmp = [](ListNode* a, ListNode* b) { return a->val > b->val; };
+        priority_queue<ListNode*, vector<ListNode*>, decltype(cmp)> minHeap(cmp);
+        for (int i = 0; i < lists.size(); i++) {
+            if (lists[i]) {
+                minHeap.push(lists[i]);
+            }
+        }
+        ListNode *dummyHead = new ListNode(), *r = dummyHead;
         while (!minHeap.empty()) {
-            ListNode *top = minHeap.top();
+            ListNode* top = minHeap.top();
             minHeap.pop();
-            r->next = top;
-            r = r->next;
-            if (top->next != nullptr) {
+            if (top->next) {
                 minHeap.push(top->next);
             }
+            r->next = top;
+            r = r->next;
         }
         return dummyHead->next;
     }

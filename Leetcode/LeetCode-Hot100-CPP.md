@@ -1433,25 +1433,27 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
-    ListNode *mergeKLists(vector<ListNode *> &lists) {
-        int n = lists.size();
-        ListNode *dummyHead = new ListNode(), *r = dummyHead;
-        auto cmp = [](ListNode *a, ListNode *b) { return a->val > b->val; };
-        priority_queue<ListNode *, vector<ListNode *>, decltype(cmp)> minHeap(
-            cmp);
-        for (int i = 0; i < n; i++) {
-            minHeap.push(lists[i]);
-            lists[i] = lists[i]->next;
+   public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if (lists.empty()) {
+            return nullptr;
         }
+        auto cmp = [](ListNode* a, ListNode* b) { return a->val > b->val; };
+        priority_queue<ListNode*, vector<ListNode*>, decltype(cmp)> minHeap(cmp);
+        for (int i = 0; i < lists.size(); i++) {
+            if (lists[i]) {
+                minHeap.push(lists[i]);
+            }
+        }
+        ListNode *dummyHead = new ListNode(), *r = dummyHead;
         while (!minHeap.empty()) {
-            ListNode *top = minHeap.top();
+            ListNode* top = minHeap.top();
             minHeap.pop();
-            r->next = top;
-            r = r->next;
-            if (top->next != nullptr) {
+            if (top->next) {
                 minHeap.push(top->next);
             }
+            r->next = top;
+            r = r->next;
         }
         return dummyHead->next;
     }

@@ -3,6 +3,10 @@
 !*.*
 
 .vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
 
 # *test.c
 *(test).cpp
@@ -60,3 +64,4 @@ a
 */**/*.dSYM
 
 .mcp.json
+tmp/
