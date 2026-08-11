@@ -6,10 +6,17 @@
  * https://leetcode.cn/problems/largest-rectangle-in-histogram/description/
  *
  * algorithms
+<<<<<<< HEAD
  * Hard (49.70%)
  * Likes:    3181
  * Dislikes: 0
  * Total Accepted:    713.5K
+=======
+ * Hard (49.65%)
+ * Likes:    3179
+ * Dislikes: 0
+ * Total Accepted:    712K
+>>>>>>> 79f0c1774d3767431372c3e04a4ea961fb6a1c29
  * Total Submissions: 1.4M
  * Testcase Example:  '[2,1,5,6,2,3]'
  *

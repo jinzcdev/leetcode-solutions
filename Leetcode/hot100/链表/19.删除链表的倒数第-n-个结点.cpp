@@ -54,57 +54,36 @@
  * 进阶：你能尝试使用一趟扫描实现吗？
  *
  */
-
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
-
 #include <bits/stdc++.h>
 using namespace std;
-
+int main() { return 0; }
 struct ListNode {
     int val;
-    ListNode *next;
+    ListNode* next;
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
-
-int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
-    ListNode *removeNthFromEnd(ListNode *head, int n) {
-        if (head == nullptr) {
-            return head;
+   public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        if (head == nullptr || n <= 0) {
+            return nullptr;
         }
-        ListNode *p = head;
-        for (int i = 0; i < n && p != nullptr; i++) {
-            p = p->next;
+        ListNode* fast = head;
+        for (int i = 0; i < n && fast; i++) {
+            fast = fast->next;
         }
-        if (p == nullptr) {
-            /*
-            p 为空说明删除的是倒数第 n
-            个节点（也就是第一个节点），也可能是删除了倒数第 n + m (m > 0)
-            个节点
-            */
+        if (fast == nullptr) {
             return head->next;
         }
-        ListNode *slow = head, *fast = p;
+        ListNode* slow = head;
         while (fast->next != nullptr) {
             slow = slow->next;
             fast = fast->next;
         }
-        if (slow->next != nullptr) {
-            slow->next = slow->next->next;
-        }
+        slow->next = slow->next->next;
         return head;
     }
 };

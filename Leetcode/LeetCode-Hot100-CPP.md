@@ -2893,31 +2893,46 @@ public:
 
 ### 3. 字符串解码
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/decode-string/) | 🟡 中等 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/decode-string/) | 🟡 中等
 
 **题目描述：** 给定一个经过编码的字符串，返回它解码后的字符串。编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。你可以认为输入字符串总是有效的。
 
 ```cpp
 class Solution {
-public:
-    string decodeString(string s) {
-        stack<int> nums;
-        stack<string> strs;
-        string cur; int num = 0;
-        for (char c : s) {
-            if (isdigit(c)) num = num * 10 + (c - '0');
-            else if (c == '[') {
-                nums.push(num); strs.push(cur);
-                num = 0; cur.clear();
-            } else if (c == ']') {
-                // 弹出倍数与前缀，拼接重复段
-                string t = strs.top(); strs.pop();
-                int k = nums.top(); nums.pop();
-                while (k--) t += cur;
-                cur = t;
-            } else cur += c;
+   public:
+    string multiplyStr(string s, int n) {
+        string ans = s;
+        for (int i = 1; i < n; i++) {
+            ans += s;
         }
-        return cur;
+        return ans;
+    }
+    string decodeString(string s) {
+        stack<string> st;
+        for (const auto& ch : s) {
+            if (ch != ']') {
+                st.push(string(1, ch));
+                continue;
+            }
+            string t = "";
+            while (!st.empty() && st.top() != "[") {
+                t.insert(0, st.top());
+                st.pop();
+            }
+            st.pop();
+            string n = "";
+            while (!st.empty() && isdigit(st.top()[0])) {
+                n.insert(0, st.top());
+                st.pop();
+            }
+            st.push(multiplyStr(t, stoi(n)));
+        }
+        string ans = "";
+        while (!st.empty()) {
+            ans.insert(0, st.top());
+            st.pop();
+        }
+        return ans;
     }
 };
 ```
@@ -2928,13 +2943,13 @@ public:
 
 **核心思路：** 栈处理嵌套：遇 '[' 压入当前数字与字符串，遇 ']' 弹出拼接。
 
-**易错点：** 数字可能多位需累乘；']' 时先拼再赋回 cur。
+**易错点：** 数字可能是连续多位的
 
 ---
 
 ### 4. 每日温度
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/daily-temperatures/) | 🟡 中等 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/daily-temperatures/) | 🟡 中等
 
 **题目描述：** 给定一个整数数组 temperatures ，表示每天的温度，返回一个数组 answer ，其中 answer[i] 是指对于第 i 天，下一个更高温度出现在几天后。如果气温在这之后都不会升高，请在该位置用 0 来代替。
 
@@ -2976,16 +2991,23 @@ public:
 ```cpp
 class Solution {
 public:
+    // 以每个 heights[i] 为高，计算以此为高能得到的最大面积
+    // 问题转换为分别找到 heights[i] 左右两侧第一个比 heights[i] 矮的高度
     int largestRectangleArea(vector<int>& heights) {
-        heights.push_back(0); // 哨兵强制结算
+        // 最后一个高度在循环中不会参与计算，所以额外增加一个为 0 的高度
+        // 保证最后一个矩形的面积也能被计算
+        heights.push_back(0);
+        int n = heights.size();
         stack<int> st;
         int ans = 0;
-        for (int i = 0; i < (int)heights.size(); i++) {
+        for (int i = 0; i < n; i++) {
             while (!st.empty() && heights[i] < heights[st.top()]) {
-                int h = heights[st.top()]; st.pop();
-                // 宽度 = 右边界 i - 左边界 - 1
-                int L = st.empty() ? -1 : st.top();
-                ans = max(ans, h * (i - L - 1));
+                int height = heights[st.top()];
+                st.pop();
+                // 由于 st 本身就是单调的，如果是 st 不为空
+                // 则此时 st.top() 就是左侧小于 height 的第一个索引
+                int l = st.empty() ? -1 : st.top();
+                ans = max(ans, height * (i - l - 1));
             }
             st.push(i);
         }
