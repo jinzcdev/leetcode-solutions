@@ -129,7 +129,7 @@
   - [最长有效括号（未 AC）](#10-最长有效括号)
 
 - [多维动态规划](#多维动态规划)
-  - [不同路径（未 AC）](#1-不同路径)
+  - [不同路径](#1-不同路径)
   - [最小路径和](#2-最小路径和)
   - [最长回文子串（未 AC）](#3-最长回文子串)
   - [最长公共子序列（未 AC）](#4-最长公共子序列)
@@ -3621,23 +3621,51 @@ public:
 
 ### 1. 不同路径
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/unique-paths/) | 🟡 中等 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/unique-paths/) | 🟡 中等
 
 **题目描述：** 一个机器人位于一个 m x n 网格的左上角，机器人每次只能向下或者向右移动一步，现在机器人试图达到网格的右下角。问总共有多少条不同的路径？
 
 ```cpp
 class Solution {
-public:
+   public:
     int uniquePaths(int m, int n) {
-        vector<vector<int>> dp(m, vector<int>(n, 1));
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                dp[i][j] = dp[i-1][j] + dp[i][j-1]; // 只能从左或上来
+        if (m == 1 || n == 1) {
+            return 1;
+        }
+        // 压缩为 1 维数组
+        vector<int> dp(n);
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                dp[j] = (i == 0 || j == 0) ? 1 : dp[j - 1] + dp[j];
             }
         }
-        return dp[m-1][n-1];
+        return dp[n - 1];
     }
 };
+/*
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        if (m == 1 || n == 1) {
+            return 1;
+        }
+        vector<vector<int>> dp(m, vector<int>(n));
+        dp[0][0] = 0;
+        for (int i = 1; i < m; i++) {
+            dp[i][0] = 1;
+        }
+        for (int j = 1; j < n; j++) {
+            dp[0][j] = 1;
+        }
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                dp[i][j] = dp[i][j - 1] + dp[i - 1][j];
+            }
+        }
+        return dp[m - 1][n - 1];
+    }
+};
+*/
 ```
 
 **时空复杂度：** 时间 O(mn)，空间 O(mn)（可压成 O(n)）
@@ -3658,19 +3686,26 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int minPathSum(vector<vector<int>>& grid) {
+        if (grid.empty()) {
+            return 0;
+        }
         int m = grid.size(), n = grid[0].size();
         vector<vector<int>> dp(m, vector<int>(n, 0));
         dp[0][0] = grid[0][0];
-        for (int i = 1; i < m; i++) dp[i][0] = dp[i-1][0] + grid[i][0];
-        for (int j = 1; j < n; j++) dp[0][j] = dp[0][j-1] + grid[0][j];
+        for (int i = 1; i < m; i++) {
+            dp[i][0] = dp[i - 1][0] + grid[i][0];
+        }
+        for (int i = 1; i < n; i++) {
+            dp[0][i] = dp[0][i - 1] + grid[0][i];
+        }
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
-                dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j];
+                dp[i][j] = min(dp[i][j - 1], dp[i - 1][j]) + grid[i][j];
             }
         }
-        return dp[m-1][n-1];
+        return dp[m - 1][n - 1];
     }
 };
 ```
