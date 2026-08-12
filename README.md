@@ -19,17 +19,20 @@
 需要 Node.js 环境。在项目根目录执行：
 
 ```bash
-npx docsify serve .
+npx docsify-cli serve .
 ```
 
 默认在 `http://localhost:3000` 启动，支持热更新——修改 Markdown 文件后浏览器自动刷新。
 
-站点功能：
+站点功能（Docsify v5）：
 
-- 全文搜索（`docsify-search`）
+- 全文搜索（内置 `search` 插件）
 - 代码一键复制（`docsify-copy-code`）
 - 上一篇/下一篇导航（`docsify-pagination`）
-- 深色/浅色模式切换（`docsify-darklight-theme`）
+- 深色/浅色模式跟随系统（`core-dark` + `prefers-color-scheme`）
+- 语法高亮主题（官方 [`prism-themes`](https://github.com/PrismJS/prism-themes)：浅色 `prism-one-light`，深色 `prism-vsc-dark-plus`）
+
+更换代码高亮主题：编辑 `index.html` 中两处 `prism-themes` 的 CSS 文件名即可（注释里列有常用主题）。
 
 ### 编译运行 C++ 题解
 

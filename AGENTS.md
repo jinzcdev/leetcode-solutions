@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This file provides guidance to AI coding agents when working with code in this repository.
+该文件提供了AI编程助手在处理该仓库代码时的指导。
 
 ## 概述
 
@@ -13,7 +13,7 @@ This file provides guidance to AI coding agents when working with code in this r
 │   ├── hot100/                  # Hot 100 按知识点分类
 │   ├── LeetCode-Hot100-CPP.md   # Hot 100 题解汇总
 │   └── top-100.json             # Hot 100 题目索引
-├── index.html                   # Docsify 文档站点入口（含 darklight-theme 夜间模式）
+├── index.html                   # Docsify v5 文档站点入口
 ├── _sidebar.md                  # 文档侧边栏
 ├── README.md                    # 项目说明（含本地启动指南）
 └── .github/workflows/pages.yml  # GitHub Pages 自动部署
@@ -34,10 +34,12 @@ VS Code 配置使用 Homebrew 安装的 GCC-14（macOS ARM64）：`/opt/homebrew
 本地启动 Docsify 预览：
 
 ```bash
-npx docsify serve .
+npx docsify-cli serve .
 ```
 
-站点使用 `docsify-darklight-theme` 插件提供夜间模式切换，通过 `window.$docsify.darklightTheme` 配置。
+- Docsify **v5**：`core` 主题 + `core-dark` 插件（`prefers-color-scheme` 跟随系统深浅色）
+- 代码高亮：官方 [`prism-themes`](https://github.com/PrismJS/prism-themes)（在 `index.html` 中替换 CSS 文件名即可换主题）
+- 语言包：`prism-c` / `prism-cpp` / `prism-java` / `prism-python`（须在 docsify 脚本之后加载）
 
 ## 文件命名规则
 

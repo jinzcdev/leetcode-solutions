@@ -8,24 +8,45 @@
       content="LeetCode 题解仓库在线文档：Hot 100 等 C++ / Java 题解" />
     <meta name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+    <!-- docsify v5 核心主题 -->
     <link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css" />
+      href="https://cdn.jsdelivr.net/npm/docsify@5/dist/themes/core.min.css" />
+    <!-- 深色模式（跟随系统） -->
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/docsify@5/dist/themes/addons/core-dark.min.css"
+      media="(prefers-color-scheme: dark)" />
+
+    <!--
+      Prism 语法高亮主题（官方 prism-themes 包，须在 Docsify 主题之后加载）
+      更换主题：改下面两个 href 中的文件名即可。
+      深色常用: prism-vsc-dark-plus / prism-one-dark / prism-dracula / prism-nord / prism-night-owl / prism-material-dark / prism-gruvbox-dark
+      浅色常用: prism-one-light / prism-ghcolors / prism-material-light / prism-gruvbox-light / prism-vs
+      完整列表: https://github.com/PrismJS/prism-themes
+    -->
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prism-themes@1/themes/prism-one-light.min.css"
+      media="(prefers-color-scheme: light)" />
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prism-themes@1/themes/prism-vsc-dark-plus.min.css"
+      media="(prefers-color-scheme: dark)" />
+
     <style>
-    :root {
-      --theme-color: #2563eb;
-    }
-    .markdown-section pre > code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 0.9em;
-      line-height: 1.5;
-    }
-    .sidebar-nav > ul > li > a {
-      font-weight: 600;
-    }
-  </style>
+      :root {
+        --theme-color: #2563eb;
+        /* 让 Prism 主题自行控制等宽字体与字号 */
+        --font-family-mono: unset;
+        --font-size-mono: unset;
+      }
+
+      .sidebar-nav > ul > li > a {
+        font-weight: 600;
+      }
+    </style>
   </head>
-  <body>
+  <body class="loading sidebar-chevron-right">
     <div id="app">加载中…</div>
+
     <script>
     // 保证 GitHub Pages 项目站带尾部斜杠，避免相对路径解析失败
     (function () {
@@ -67,28 +88,21 @@
         crossChapter: true,
         crossChapterText: true,
       },
-      darklightTheme: {
-        defaultTheme: 'light',
-      },
     };
-  </script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2/dist/docsify-copy-code.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+    </script>
+
+    <!-- docsify v5 核心 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify@5"></script>
+    <!-- 搜索插件 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify@5/dist/plugins/search.min.js"></script>
+    <!-- 复制代码 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@3/dist/docsify-copy-code.min.js"></script>
+    <!-- 翻页导航 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
+    <!-- Prism 语言包（须在 docsify 之后加载；默认不含 C++/Java） -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
   </body>
 </html>
