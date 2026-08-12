@@ -59,7 +59,7 @@ int main() { return 0; }
  * 的最终位置，另一种则无法确定。 Hoare 快速排序（无法确定 pivot 的最终位置）
  */
 class HoareQuickSort {
-  public:
+   public:
     static void quickSort(vector<int> &nums, int left, int right) {
         if (left >= right) {
             return;
@@ -71,8 +71,10 @@ class HoareQuickSort {
         int pivot = nums[left];
         int l = left - 1, r = right + 1;
         while (l < r) {
-            do l++; while (nums[l] < pivot);
-            do r--; while (nums[r] > pivot);
+            do l++;
+            while (nums[l] < pivot);
+            do r--;
+            while (nums[r] > pivot);
             if (l < r) {
                 swap(nums[l], nums[r]);
             }
@@ -86,7 +88,7 @@ class HoareQuickSort {
  * Lomuto 快速排序（可以确定 pivot 的最终位置）
  */
 class LomutoQuickSort {
-  public:
+   public:
     static void quickSort(vector<int> &nums, int left, int right) {
         if (left >= right) {
             return;
@@ -95,14 +97,10 @@ class LomutoQuickSort {
         swap(nums[left], nums[index]);
         int pivot = nums[left], l = left, r = right;
         while (l < r) {
-            while (l < r && nums[r] > pivot)
-                r--;
-            if (l < r)
-                nums[l++] = nums[r];
-            while (l < r && nums[l] < pivot)
-                l++;
-            if (l < r)
-                nums[r--] = nums[l];
+            while (l < r && nums[r] > pivot) r--;
+            if (l < r) nums[l++] = nums[r];
+            while (l < r && nums[l] < pivot) l++;
+            if (l < r) nums[r--] = nums[l];
         }
         nums[l] = pivot;
         quickSort(nums, left, l - 1);
@@ -114,7 +112,7 @@ class LomutoQuickSort {
  * 堆排序
  */
 class HeapSort {
-  public:
+   public:
     static void heapSort(vector<int> &nums) {
         if (nums.empty()) {
             return;
@@ -131,7 +129,7 @@ class HeapSort {
         }
     }
 
-  private:
+   private:
     // 向下调整，构建大顶堆
     static void siftDown(vector<int> &nums, int n, int i) {
         for (int j = i * 2 + 1; j < n; i = j, j = i * 2 + 1) {
@@ -161,15 +159,14 @@ class HeapSort {
  * 归并排序（分治思想）
  */
 class MergeSort {
-  public:
+   public:
     static void mergeSort(vector<int> &nums) {
         vector<int> tmp(nums.size());
         mergeSort(nums, 0, nums.size() - 1, tmp);
     }
 
-  private:
-    static void mergeSort(vector<int> &nums, int left, int right,
-                          vector<int> &tmp) {
+   private:
+    static void mergeSort(vector<int> &nums, int left, int right, vector<int> &tmp) {
         if (left >= right) {
             return;
         }
@@ -193,7 +190,7 @@ class MergeSort {
 };
 
 class Solution {
-  public:
+   public:
     vector<int> sortArray(vector<int> &nums) {
         // MergeSort::mergeSort(nums);
         // HeapSort::heapSort(nums);

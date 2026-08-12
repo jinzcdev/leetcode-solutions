@@ -8,7 +8,7 @@
 
 <https://jinzcdev.github.io/leetcode-solutions/>
 
-- [LeetCode Hot 100 题解（C++）](https://jinzcdev.github.io/leetcode-solutions/#/Leetcode/LeetCode-Hot100-CPP)
+- [LeetCode Hot 100 题解（C++）](https://jinzcdev.github.io/leetcode-solutions/#/Leetcode/hot100/LeetCode-Hot100-CPP)
 
 > 首次启用：仓库 Settings → Pages → Build and deployment → Source 选择 **GitHub Actions**，合并配置后 workflow 会自动部署。
 
@@ -33,6 +33,21 @@ npx docsify-cli serve .
 - 语法高亮主题（官方 [`prism-themes`](https://github.com/PrismJS/prism-themes)：浅色 `prism-one-light`，深色 `prism-vsc-dark-plus`）
 
 更换代码高亮主题：编辑 `index.html` 中两处 `prism-themes` 的 CSS 文件名即可（注释里列有常用主题）。
+
+### 代码格式化
+
+```bash
+npm install      # 首次
+npm run format   # Markdown/HTML/JSON/YAML + Java + C/C++
+```
+
+| 类型                    | 工具                                        |
+| ----------------------- | ------------------------------------------- |
+| md / html / json / yaml | Prettier                                    |
+| Java                    | Prettier + `prettier-plugin-java`           |
+| C/C++                   | `clang-format`（npm，跟随 `.clang-format`） |
+
+提交时由 Husky + lint-staged 自动格式化暂存文件。`npm run format` 还会格式化 Markdown 中的 ` ```cpp ` / ` ```java ` 代码块（保存 `.md` 时编辑器里的 Prettier 不会改代码块内容）。语法有误的 Java 在全量 format 时会跳过并告警。
 
 ### 编译运行 C++ 题解
 

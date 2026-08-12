@@ -57,7 +57,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     // 找到第一个大于等于 target 的元素下标
     int searchInsert(vector<int> &nums, int target) {
         int n = nums.size(), l = 0, r = n - 1;

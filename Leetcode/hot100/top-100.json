@@ -19,10 +19,7 @@
   [
     "滑动窗口",
     [
-      [
-        "longest-substring-without-repeating-characters",
-        ["哈希表", "字符串", "滑动窗口"]
-      ],
+      ["longest-substring-without-repeating-characters", ["哈希表", "字符串", "滑动窗口"]],
       ["find-all-anagrams-in-a-string", ["哈希表", "字符串", "滑动窗口"]]
     ]
   ],
@@ -30,10 +27,7 @@
     "子串",
     [
       ["subarray-sum-equals-k", ["数组", "哈希表", "前缀和"]],
-      [
-        "sliding-window-maximum",
-        ["队列", "数组", "滑动窗口", "单调队列", "堆（优先队列）"]
-      ],
+      ["sliding-window-maximum", ["队列", "数组", "滑动窗口", "单调队列", "堆（优先队列）"]],
       ["minimum-window-substring", ["哈希表", "字符串", "滑动窗口"]]
     ]
   ],
@@ -79,10 +73,7 @@
     "二叉树",
     [
       ["binary-tree-inorder-traversal", ["栈", "树", "深度优先搜索", "二叉树"]],
-      [
-        "maximum-depth-of-binary-tree",
-        ["树", "深度优先搜索", "广度优先搜索", "二叉树"]
-      ],
+      ["maximum-depth-of-binary-tree", ["树", "深度优先搜索", "广度优先搜索", "二叉树"]],
       ["invert-binary-tree", ["树", "深度优先搜索", "广度优先搜索", "二叉树"]],
       ["symmetric-tree", ["树", "深度优先搜索", "广度优先搜索", "二叉树"]],
       ["diameter-of-binary-tree", ["树", "深度优先搜索", "二叉树"]],
@@ -91,44 +82,23 @@
         "convert-sorted-array-to-binary-search-tree",
         ["树", "二叉搜索树", "数组", "分治", "二叉树"]
       ],
-      [
-        "validate-binary-search-tree",
-        ["树", "深度优先搜索", "二叉搜索树", "二叉树"]
-      ],
-      [
-        "kth-smallest-element-in-a-bst",
-        ["树", "深度优先搜索", "二叉搜索树", "二叉树"]
-      ],
-      [
-        "binary-tree-right-side-view",
-        ["树", "深度优先搜索", "广度优先搜索", "二叉树"]
-      ],
-      [
-        "flatten-binary-tree-to-linked-list",
-        ["栈", "树", "深度优先搜索", "链表", "二叉树"]
-      ],
+      ["validate-binary-search-tree", ["树", "深度优先搜索", "二叉搜索树", "二叉树"]],
+      ["kth-smallest-element-in-a-bst", ["树", "深度优先搜索", "二叉搜索树", "二叉树"]],
+      ["binary-tree-right-side-view", ["树", "深度优先搜索", "广度优先搜索", "二叉树"]],
+      ["flatten-binary-tree-to-linked-list", ["栈", "树", "深度优先搜索", "链表", "二叉树"]],
       [
         "construct-binary-tree-from-preorder-and-inorder-traversal",
         ["树", "数组", "哈希表", "分治", "二叉树"]
       ],
       ["path-sum-iii", ["树", "深度优先搜索", "二叉树"]],
-      [
-        "lowest-common-ancestor-of-a-binary-tree",
-        ["树", "深度优先搜索", "二叉树"]
-      ],
-      [
-        "binary-tree-maximum-path-sum",
-        ["树", "深度优先搜索", "动态规划", "二叉树"]
-      ]
+      ["lowest-common-ancestor-of-a-binary-tree", ["树", "深度优先搜索", "二叉树"]],
+      ["binary-tree-maximum-path-sum", ["树", "深度优先搜索", "动态规划", "二叉树"]]
     ]
   ],
   [
     "图论",
     [
-      [
-        "number-of-islands",
-        ["深度优先搜索", "广度优先搜索", "并查集", "数组", "矩阵"]
-      ],
+      ["number-of-islands", ["深度优先搜索", "广度优先搜索", "并查集", "数组", "矩阵"]],
       ["rotting-oranges", ["广度优先搜索", "数组", "矩阵"]],
       ["course-schedule", ["深度优先搜索", "广度优先搜索", "图", "拓扑排序"]],
       ["implement-trie-prefix-tree", ["设计", "字典树", "哈希表", "字符串"]]
@@ -152,10 +122,7 @@
     [
       ["search-insert-position", ["数组", "二分查找"]],
       ["search-a-2d-matrix", ["数组", "二分查找", "矩阵"]],
-      [
-        "find-first-and-last-position-of-element-in-sorted-array",
-        ["数组", "二分查找"]
-      ],
+      ["find-first-and-last-position-of-element-in-sorted-array", ["数组", "二分查找"]],
       ["search-in-rotated-sorted-array", ["数组", "二分查找"]],
       ["find-minimum-in-rotated-sorted-array", ["数组", "二分查找"]],
       ["median-of-two-sorted-arrays", ["数组", "二分查找", "分治"]]
@@ -174,27 +141,12 @@
   [
     "堆",
     [
-      [
-        "kth-largest-element-in-an-array",
-        ["数组", "分治", "快速选择", "排序", "堆（优先队列）"]
-      ],
+      ["kth-largest-element-in-an-array", ["数组", "分治", "快速选择", "排序", "堆（优先队列）"]],
       [
         "top-k-frequent-elements",
-        [
-          "数组",
-          "哈希表",
-          "分治",
-          "桶排序",
-          "计数",
-          "快速选择",
-          "排序",
-          "堆（优先队列）"
-        ]
+        ["数组", "哈希表", "分治", "桶排序", "计数", "快速选择", "排序", "堆（优先队列）"]
       ],
-      [
-        "find-median-from-data-stream",
-        ["设计", "双指针", "数据流", "排序", "堆（优先队列）"]
-      ]
+      ["find-median-from-data-stream", ["设计", "双指针", "数据流", "排序", "堆（优先队列）"]]
     ]
   ],
   [
@@ -214,10 +166,7 @@
       ["house-robber", ["数组", "动态规划"]],
       ["perfect-squares", ["广度优先搜索", "数学", "动态规划"]],
       ["coin-change", ["广度优先搜索", "数组", "动态规划"]],
-      [
-        "word-break",
-        ["字典树", "记忆化", "数组", "哈希表", "字符串", "动态规划"]
-      ],
+      ["word-break", ["字典树", "记忆化", "数组", "哈希表", "字符串", "动态规划"]],
       ["longest-increasing-subsequence", ["数组", "二分查找", "动态规划"]],
       ["maximum-product-subarray", ["数组", "动态规划"]],
       ["partition-equal-subset-sum", ["数组", "动态规划"]],

@@ -53,15 +53,16 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-public:
+   public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
         int n = temperatures.size();
         vector<int> ans(n);
-        stack<int> st; // 存下标，栈内温度单调递减
+        stack<int> st;  // 存下标，栈内温度单调递减
         for (int i = 0; i < n; i++) {
             while (!st.empty() && temperatures[i] > temperatures[st.top()]) {
-                int j = st.top(); st.pop();
-                ans[j] = i - j; // 下一个更高温度的距离
+                int j = st.top();
+                st.pop();
+                ans[j] = i - j;  // 下一个更高温度的距离
             }
             st.push(i);
         }

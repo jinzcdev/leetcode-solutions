@@ -58,7 +58,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     int lengthOfLongestSubstring(string s) {
         if (s.size() <= 1) {
             return s.size();

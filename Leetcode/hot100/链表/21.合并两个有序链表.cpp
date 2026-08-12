@@ -62,7 +62,7 @@ struct ListNode {
 };
 // @lc code=start
 class Solution {
-  public:
+   public:
     ListNode *mergeTwoLists(ListNode *list1, ListNode *list2) {
         if (list1 == nullptr || list2 == nullptr) {
             return list1 == nullptr ? list2 : list1;

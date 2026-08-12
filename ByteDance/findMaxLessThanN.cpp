@@ -35,7 +35,7 @@ int findMaxLessThanN(const vector<int>& A, int n) {
 
     // 无法构造相同位数 → 构造少一位的最大数
     if (L == 1) {
-        return -1;   // n 是个位数且无法构造
+        return -1;  // n 是个位数且无法构造
     }
     char maxDigit = '0' + digits[0];
     string fallback(L - 1, maxDigit);
@@ -45,22 +45,14 @@ int findMaxLessThanN(const vector<int>& A, int n) {
 int main() {
     // 测试用例
     vector<pair<vector<int>, int>> tests = {
-        {{1,2,4,9}, 2533},
-        {{1}, 10},
-        {{2,3}, 1},
-        {{9}, 88},
-        {{1,2,3}, 12},
-        {{1,2,3}, 13},
-        {{1,2,3}, 21},
-        {{5,9}, 5544},
-        {{5,9}, 5554},
+        {{1, 2, 4, 9}, 2533}, {{1}, 10},       {{2, 3}, 1},    {{9}, 88},      {{1, 2, 3}, 12},
+        {{1, 2, 3}, 13},      {{1, 2, 3}, 21}, {{5, 9}, 5544}, {{5, 9}, 5554},
     };
-    vector<int> expected = {2499, 1, -1, 9, 11, 12, 13, 999,999};
+    vector<int> expected = {2499, 1, -1, 9, 11, 12, 13, 999, 999};
 
     for (size_t i = 0; i < tests.size(); ++i) {
         int res = findMaxLessThanN(tests[i].first, tests[i].second);
-        cout << "Test " << i+1 << ": " << res 
-             << " (expected " << expected[i] << ") "
+        cout << "Test " << i + 1 << ": " << res << " (expected " << expected[i] << ") "
              << (res == expected[i] ? "PASS" : "FAIL") << endl;
     }
     return 0;

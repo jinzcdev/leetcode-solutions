@@ -79,7 +79,7 @@ struct ListNode {
 };
 // @lc code=start
 class Solution {
-  public:
+   public:
     bool hasCycle(ListNode *head) {
         if (head == nullptr || head->next == nullptr) {
             return false;

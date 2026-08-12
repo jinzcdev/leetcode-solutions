@@ -60,12 +60,11 @@ struct TreeNode {
     TreeNode *right;
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right)
-        : val(x), left(left), right(right) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 // @lc code=start
 class Solution {
-  public:
+   public:
     int kthSmallest(TreeNode *root, int k) {
         stack<TreeNode *> st;
         TreeNode *p = root;

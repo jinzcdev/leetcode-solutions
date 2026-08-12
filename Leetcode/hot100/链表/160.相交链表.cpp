@@ -114,7 +114,7 @@ struct ListNode {
 };
 // @lc code=start
 class Solution {
-  public:
+   public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode *p = headA, *q = headB;
         while (p != q) {

@@ -61,7 +61,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     bool canFinish(int numCourses, vector<vector<int>> &prerequisites) {
         vector<vector<int>> e(numCourses);
         vector<int> ind(numCourses);

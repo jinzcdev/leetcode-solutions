@@ -67,7 +67,7 @@ struct ListNode {
 };
 // @lc code=start
 class Solution {
-  public:
+   public:
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
         if (!l1 || !l2) {
             return l1 ? l1 : l2;

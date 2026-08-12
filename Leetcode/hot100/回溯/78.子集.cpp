@@ -50,7 +50,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     vector<vector<int>> ans;
     void dfs(int start, int n, vector<int> &nums, vector<int> &path) {
         if (start >= n) {

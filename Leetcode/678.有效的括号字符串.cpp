@@ -74,14 +74,13 @@ using namespace std;
 
 // @lc code=start
 class Solution {
-  public:
+   public:
     bool checkValidString(string s) {
         if (s.empty()) {
             return false;
         }
         int n = s.size();
-        vector<vector<bool>> dp =
-            vector<vector<bool>>(n, vector<bool>(n, false));
+        vector<vector<bool>> dp = vector<vector<bool>>(n, vector<bool>(n, false));
 
         for (int i = 0; i < n; i++) {
             if (s[i] == '*') {

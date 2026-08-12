@@ -69,7 +69,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     bool search(vector<int> &nums, int target) {
         if (nums.empty()) {
             return false;

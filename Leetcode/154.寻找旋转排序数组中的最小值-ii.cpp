@@ -68,7 +68,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     int findMin(vector<int> &nums) {
         if (nums.empty()) {
             return 0;

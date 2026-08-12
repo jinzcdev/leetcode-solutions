@@ -68,7 +68,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Trie {
-  public:
+   public:
     unordered_map<char, Trie *> children;
     bool isWord;
     Trie() { this->isWord = false; }

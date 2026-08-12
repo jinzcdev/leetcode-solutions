@@ -71,7 +71,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     int orangesRotting(vector<vector<int>> &grid) {
         if (grid.empty()) {
             return 0;
@@ -101,8 +101,7 @@ class Solution {
                 for (int j = 0; j < 4; j++) {
                     int newX = node.first + d[j][0];
                     int newY = node.second + d[j][1];
-                    if (newX >= 0 && newX < m && newY >= 0 && newY < n &&
-                        grid[newX][newY] == 1) {
+                    if (newX >= 0 && newX < m && newY >= 0 && newY < n && grid[newX][newY] == 1) {
                         freshCnt--;
                         // 这里之前写错了 grid[newX][newY] == 2
                         grid[newX][newY] = 2;

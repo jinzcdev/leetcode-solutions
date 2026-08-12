@@ -68,11 +68,10 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     int m, n, d[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
     bool isValid(int x, int y) { return x >= 0 && x < m && y >= 0 && y < n; }
-    bool dfs(vector<vector<char>> &board, string word, int x, int y, int i,
-             vector<vector<bool>> &vis) {
+    bool dfs(vector<vector<char>> &board, string word, int x, int y, int i, vector<vector<bool>> &vis) {
         if (!isValid(x, y) || (i < word.size() && board[x][y] != word[i])) {
             return false;
         }
@@ -83,8 +82,7 @@ class Solution {
         bool flag = false;
         for (int j = 0; j < 4; j++) {
             int newX = x + d[j][0], newY = y + d[j][1];
-            if (isValid(newX, newY) && !vis[newX][newY] &&
-                (flag = dfs(board, word, newX, newY, i + 1, vis))) {
+            if (isValid(newX, newY) && !vis[newX][newY] && (flag = dfs(board, word, newX, newY, i + 1, vis))) {
                 // 这里不能直接 return, 因为要恢复当前 (x, y) 的可访问性，dfs
                 // 的链路并不是单一链路，要支持回溯后二次搜索
                 break;

@@ -1,0 +1,26 @@
+{
+  "name": "acm-code",
+  "private": true,
+  "description": "LeetCode solutions docs & format tooling",
+  "scripts": {
+    "format": "node scripts/format.js",
+    "format:check": "node scripts/format.js --check",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{html,json,yml,yaml,css,js}": "prettier --write",
+    "*.md": [
+      "prettier --write",
+      "node scripts/format.js --md-fences"
+    ],
+    "*.java": "prettier --write",
+    "*.{c,h,cc,cpp,cxx,hpp}": "clang-format -i --style=file"
+  },
+  "devDependencies": {
+    "clang-format": "1.8.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.5.2",
+    "prettier": "3.6.2",
+    "prettier-plugin-java": "2.7.7"
+  }
+}
