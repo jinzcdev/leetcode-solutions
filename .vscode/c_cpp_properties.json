@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "name": "Mac",
+      "includePath": ["${default}"],
+      "defines": [],
+      "compilerPath": "/opt/homebrew/bin/gcc-14",
+      "intelliSenseMode": "macos-gcc-arm64",
+      "cppStandard": "c++17",
+      "cStandard": "c17"
+    }
+  ],
+  "version": 4
+}

@@ -34,6 +34,21 @@ npx docsify-cli serve .
 
 更换代码高亮主题：编辑 `index.html` 中两处 `prism-themes` 的 CSS 文件名即可（注释里列有常用主题）。
 
+### 代码格式化
+
+```bash
+npm install      # 首次
+npm run format   # Markdown/HTML/JSON/YAML + Java + C/C++
+```
+
+| 类型                    | 工具                                        |
+| ----------------------- | ------------------------------------------- |
+| md / html / json / yaml | Prettier                                    |
+| Java                    | Prettier + `prettier-plugin-java`           |
+| C/C++                   | `clang-format`（npm，跟随 `.clang-format`） |
+
+提交时由 Husky + lint-staged 自动格式化暂存文件。`npm run format` 还会格式化 Markdown 中的 ` ```cpp ` / ` ```java ` 代码块（保存 `.md` 时编辑器里的 Prettier 不会改代码块内容）。语法有误的 Java 在全量 format 时会跳过并告警。
+
 ### 编译运行 C++ 题解
 
 每个 C++ 文件是独立的单文件解答，可直接编译运行：

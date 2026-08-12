@@ -58,7 +58,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     vector<vector<int>> merge(vector<vector<int>> &intervals) {
         if (intervals.size() <= 1) {
             return intervals;

@@ -80,14 +80,13 @@ struct TreeNode {
     TreeNode *right;
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right)
-        : val(x), left(left), right(right) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     void flatten(TreeNode *root) {
         if (root == nullptr) {
             return;

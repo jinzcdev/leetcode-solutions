@@ -63,8 +63,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-
-  public:
+   public:
     vector<string> ans;
     void dfs(string s, int start, int cnt, vector<string> &tmp) {
         if (cnt == 3) {

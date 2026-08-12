@@ -64,7 +64,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     vector<vector<int>> ans;
     vector<int> path;
     void dfs(int start, vector<int> &candidates, int target) {

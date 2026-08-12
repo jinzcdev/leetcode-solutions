@@ -15,7 +15,7 @@
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> hash;
         for (int i = 0; i < nums.size(); i++) {
@@ -44,7 +44,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         unordered_map<string, vector<string>> mp;
         vector<vector<string>> ans;
@@ -75,7 +75,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int longestConsecutive(vector<int>& nums) {
         unordered_set<int> st;
         for (auto x : nums) {
@@ -114,7 +114,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     void moveZeroes(vector<int>& nums) {
         int i = 0, n = nums.size();
         for (int j = 0; j < n; j++) {
@@ -143,7 +143,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int maxArea(vector<int>& height) {
         if (height.empty()) {
             return 0;
@@ -151,8 +151,10 @@ public:
         int l = 0, r = height.size() - 1, ans = 0;
         while (l < r) {
             ans = max(ans, (r - l) * min(height[l], height[r]));
-            if (height[l] < height[r]) l++;
-            else r--;
+            if (height[l] < height[r])
+                l++;
+            else
+                r--;
         }
         return ans;
     }
@@ -173,7 +175,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<vector<int>> threeSum(vector<int> &nums) {
         int n = nums.size();
         vector<vector<int>> ans;
@@ -215,7 +217,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int trap(vector<int> &height) {
         int n = height.size();
         vector<int> leftMax(n), rightMax(n);
@@ -267,7 +269,7 @@ s 由英文字母、数字、符号和空格组成
 
 ```cpp
 class Solution {
-  public:
+   public:
     int lengthOfLongestSubstring(string s) {
         if (s.size() <= 1) {
             return s.size();
@@ -318,7 +320,7 @@ s 和 p 仅包含小写字母
 
 ```cpp
 class Solution {
-  public:
+   public:
     vector<int> findAnagrams(string s, string p) {
         vector<int> ans;
         if (p.size() > s.size()) {
@@ -361,7 +363,7 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
+   public:
     int subarraySum(vector<int> &nums, int k) {
         unordered_map<int, int> hash;
         int n = nums.size(), prefixSum = 0, ans = 0;
@@ -390,7 +392,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         priority_queue<pair<int, int>> heap;
         for (int i = 0; i < k; i++) {
@@ -446,7 +448,7 @@ s 和 t 由英文字母组成
 
 ```cpp
 class Solution {
-  public:
+   public:
     string minWindow(string s, string t) {
         if (s.size() < t.size()) {
             return "";
@@ -498,7 +500,7 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
+   public:
     int maxSubArray(vector<int>& nums) {
         int n = nums.size(), ans = nums[0];
         vector<int> dp(n, 0);
@@ -548,7 +550,7 @@ intervals[i].length == 2
 
 ```cpp
 class Solution {
-  public:
+   public:
     vector<vector<int>> merge(vector<vector<int>> &intervals) {
         if (intervals.size() <= 1) {
             return intervals;
@@ -586,7 +588,7 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
+   public:
     void rotate(vector<int>& nums, int k) {
         int t = nums.size() - (k % nums.size());
         reverse(nums.begin(), nums.begin() + t);
@@ -610,7 +612,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<int> productExceptSelf(vector<int>& nums) {
         int cntZero = 0, prod = 1, n = nums.size();
         for (auto x : nums) {
@@ -650,7 +652,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int firstMissingPositive(vector<int>& nums) {
         int n = nums.size();
         for (int i = 0; i < n; i++) {
@@ -686,7 +688,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     void setZeroes(vector<vector<int>>& matrix) {
         int m = matrix.size(), n = matrix[0].size();
         bool hasZeroRow = false, hasZeroCol = false;
@@ -728,17 +730,26 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
         int m = matrix.size(), n = matrix[0].size(), d = 0;
         int border[] = {n - 1, m - 1, 0, 1}, num = m * n;
         int x = 0, y = -1, i = 0;
         vector<int> ans(num);
         while (i < num) {
-            if (d == 0 && ++y == border[d]) { border[d]--; d = 1; }
-            else if (d == 1 && ++x == border[d]) { border[d]--; d = 2; }
-            else if (d == 2 && --y == border[d]) { border[d]++; d = 3; }
-            else if (d == 3 && --x == border[d]) { border[d]++; d = 0; }
+            if (d == 0 && ++y == border[d]) {
+                border[d]--;
+                d = 1;
+            } else if (d == 1 && ++x == border[d]) {
+                border[d]--;
+                d = 2;
+            } else if (d == 2 && --y == border[d]) {
+                border[d]++;
+                d = 3;
+            } else if (d == 3 && --x == border[d]) {
+                border[d]++;
+                d = 0;
+            }
             ans[i++] = matrix[x][y];
         }
         return ans;
@@ -760,7 +771,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     void rotate(vector<vector<int>>& matrix) {
         int n = matrix.size();
         for (int i = 0; i < n; i++) {
@@ -789,14 +800,16 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         int m = matrix.size(), n = matrix[0].size();
         int x = 0, y = n - 1;
         while (x < m && y >= 0) {
             if (matrix[x][y] == target) return true;
-            if (target < matrix[x][y]) y--;
-            else x++;
+            if (target < matrix[x][y])
+                y--;
+            else
+                x++;
         }
         return false;
     }
@@ -819,7 +832,7 @@ public:
 
 ```cpp
 class Solution {
-  public:
+   public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode *p = headA, *q = headB;
         while (p != q) {
@@ -845,7 +858,7 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
+   public:
     ListNode *reverseList(ListNode *head) {
         ListNode *pre = nullptr, *p = head;
         while (p != nullptr) {
@@ -873,7 +886,7 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
+   public:
     ListNode *reverseList(ListNode *head) {
         ListNode *pre = nullptr, *p = head;
         while (p != nullptr) {
@@ -924,7 +937,7 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
+   public:
     bool hasCycle(ListNode *head) {
         if (head == nullptr || head->next == nullptr) {
             return false;
@@ -959,7 +972,7 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
+   public:
     ListNode *detectCycle(ListNode *head) {
         if (head == nullptr || head->next == nullptr) {
             return nullptr;
@@ -999,7 +1012,7 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
+   public:
     ListNode *mergeTwoLists(ListNode *list1, ListNode *list2) {
         if (list1 == nullptr || list2 == nullptr) {
             return list1 == nullptr ? list2 : list1;
@@ -1036,7 +1049,7 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
+   public:
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
         if (!l1 || !l2) {
             return l1 ? l1 : l2;
@@ -1083,7 +1096,7 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
+   public:
     ListNode *removeNthFromEnd(ListNode *head, int n) {
         if (head == nullptr || n <= 0) {
             return nullptr;
@@ -1125,7 +1138,7 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
+   public:
     ListNode *swapPairs(ListNode *head) {
         if (head == nullptr || head->next == nullptr) {
             return head;
@@ -1162,7 +1175,7 @@ class Solution {
  * };
  */
 class Solution {
-  public:
+   public:
     ListNode *reverseKGroup(ListNode *head, int k) {
         if (head == nullptr || head->next == nullptr || k <= 1) {
             return nullptr;
@@ -1204,7 +1217,7 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
+   public:
     Node* copyRandomList(Node* head) {
         unordered_map<Node*, Node*> mp;
         Node *dummyHead = new Node(0), *r = dummyHead;
@@ -1214,8 +1227,7 @@ public:
             r->next = node;
             r = r->next;
         }
-        for (Node *p = head, *q = dummyHead->next; p != nullptr;
-             p = p->next, q = q->next) {
+        for (Node *p = head, *q = dummyHead->next; p != nullptr; p = p->next, q = q->next) {
             if (p->random == nullptr) {
                 q->random = nullptr;
                 continue;
@@ -1241,7 +1253,7 @@ public:
 
 ```cpp
 class Solution {
-  public:
+   public:
     ListNode *sortList(ListNode *head) {
         if (!head || !head->next) {
             return head;
@@ -1255,7 +1267,7 @@ class Solution {
             fast = fast->next->next;
         }
         ListNode *mid = slow->next;
-        slow->next = nullptr; // 断开两个链表
+        slow->next = nullptr;  // 断开两个链表
         return merge(sortList(head), sortList(mid));
     }
     ListNode *merge(ListNode *a, ListNode *b) {
@@ -1335,7 +1347,7 @@ class Solution {
 
 ```cpp
 class LRUCache {
-private:
+   private:
     struct Node {
         Node *left, *right;
         int key, val;
@@ -1361,10 +1373,13 @@ private:
         hash.erase(node->key);
         return node;
     }
-public:
+
+   public:
     LRUCache(int capacity) {
-        head = new Node(); tail = new Node();
-        head->right = tail; tail->left = head;
+        head = new Node();
+        tail = new Node();
+        head->right = tail;
+        tail->left = head;
         this->capacity = capacity;
     }
     int get(int key) {
@@ -1409,7 +1424,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<int> ans;
     void inorder(TreeNode* root) {
         if (root != nullptr) {
@@ -1439,7 +1454,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int maxDepth(TreeNode* root) {
         if (root == nullptr) return 0;
         return max(maxDepth(root->left), maxDepth(root->right)) + 1;
@@ -1461,10 +1476,9 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     TreeNode* invertTree(TreeNode* root) {
-        if (root == nullptr ||
-            (root->left == nullptr && root->right == nullptr)) {
+        if (root == nullptr || (root->left == nullptr && root->right == nullptr)) {
             return root;
         }
         TreeNode* left = root->left;
@@ -1491,13 +1505,11 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     bool isSymmetric(TreeNode* root1, TreeNode* root2) {
         if (root1 == nullptr && root2 == nullptr) return true;
-        if (root1 == nullptr || root2 == nullptr || root1->val != root2->val)
-            return false;
-        return isSymmetric(root1->left, root2->right) &&
-               isSymmetric(root1->right, root2->left);
+        if (root1 == nullptr || root2 == nullptr || root1->val != root2->val) return false;
+        return isSymmetric(root1->left, root2->right) && isSymmetric(root1->right, root2->left);
     }
     bool isSymmetric(TreeNode* root) { return isSymmetric(root, root); }
 };
@@ -1517,7 +1529,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int ans = 0;
     int getHeight(TreeNode* root) {
         if (root == nullptr) return 0;
@@ -1550,7 +1562,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> res;
         if (!root) return res;
@@ -1561,7 +1573,8 @@ public:
             vector<int> level;
             // 一次处理当前层全部节点
             for (int i = 0; i < n; i++) {
-                TreeNode* node = q.front(); q.pop();
+                TreeNode* node = q.front();
+                q.pop();
                 level.push_back(node->val);
                 if (node->left) q.push(node->left);
                 if (node->right) q.push(node->right);
@@ -1591,7 +1604,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     TreeNode* dfs(vector<int>& nums, int left, int right) {
         if (left > right) return nullptr;
         if (left == right) return new TreeNode(nums[left]);
@@ -1601,9 +1614,7 @@ public:
         root->right = dfs(nums, mid + 1, right);
         return root;
     }
-    TreeNode* sortedArrayToBST(vector<int>& nums) {
-        return dfs(nums, 0, nums.size() - 1);
-    }
+    TreeNode* sortedArrayToBST(vector<int>& nums) { return dfs(nums, 0, nums.size() - 1); }
 };
 ```
 
@@ -1634,8 +1645,7 @@ class Solution {
     bool solve(TreeNode* root, long low, long high) {
         if (root == NULL) return true;
         if (root->val <= low || root->val >= high) return false;
-        return solve(root->left, low, root->val) &&
-               solve(root->right, root->val, high);
+        return solve(root->left, low, root->val) && solve(root->right, root->val, high);
     }
     bool isValidBST(TreeNode* root) { return solve(root, LONG_MIN, LONG_MAX); }
     bool isValidBST(TreeNode* root) {
@@ -1684,7 +1694,7 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
+   public:
     int kthSmallest(TreeNode *root, int k) {
         stack<TreeNode *> st;
         TreeNode *p = root;
@@ -1719,7 +1729,7 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<int> ans;
     void dfs(TreeNode* root, int depth) {
         if (root == nullptr) return;
@@ -1752,7 +1762,7 @@ public:
 
 ```cpp
 class Solution {
-  public:
+   public:
     void flatten(TreeNode *root) {
         if (root == nullptr) {
             return;
@@ -1791,9 +1801,8 @@ class Solution {
 
 ```cpp
 class Solution {
-private:
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder,
-                        int prel, int prer, int inl, int inr) {
+   private:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder, int prel, int prer, int inl, int inr) {
         if (prel > prer) return nullptr;
         TreeNode* root = new TreeNode(preorder[prel]);
         int k = inl;
@@ -1803,7 +1812,8 @@ private:
         root->right = buildTree(preorder, inorder, prel + numLeft + 1, prer, k + 1, inr);
         return root;
     }
-public:
+
+   public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         int n = preorder.size();
         return buildTree(preorder, inorder, 0, n - 1, 0, n - 1);
@@ -1825,7 +1835,7 @@ public:
 
 ```cpp
 class Solution {
-private:
+   private:
     int dfs(TreeNode* root, long long sum) {
         if (root == nullptr) return 0;
         long long tmp = sum - root->val;
@@ -1833,11 +1843,11 @@ private:
         int right = dfs(root->right, tmp);
         return left + right + (tmp == 0 ? 1 : 0);
     }
-public:
+
+   public:
     int pathSum(TreeNode* root, int targetSum) {
         if (root == nullptr) return 0;
-        return dfs(root, targetSum) + pathSum(root->left, targetSum) +
-               pathSum(root->right, targetSum);
+        return dfs(root, targetSum) + pathSum(root->left, targetSum) + pathSum(root->right, targetSum);
     }
 };
 ```
@@ -1856,7 +1866,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if (root == nullptr || root == p || root == q) {
             return root;
@@ -1887,7 +1897,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int ans = INT_MIN;
     /*
         把 dfs 递归构建为单边的最大路径和，在递归的过程中去计算以结点为根的双边最大路径和。
@@ -1923,7 +1933,7 @@ public:
 
 ```cpp
 class Solution {
-  public:
+   public:
     vector<vector<bool>> vis;
     int m, n;
     bool isValid(int x, int y) { return x >= 0 && x < m && y >= 0 && y < n; }
@@ -1973,7 +1983,7 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
+   public:
     int orangesRotting(vector<vector<int>> &grid) {
         if (grid.empty()) {
             return 0;
@@ -2003,8 +2013,7 @@ class Solution {
                 for (int j = 0; j < 4; j++) {
                     int newX = x + d[j][0];
                     int newY = y + d[j][1];
-                    if (newX >= 0 && newX < m && newY >= 0 && newY < n &&
-                        grid[newX][newY] == 1) {
+                    if (newX >= 0 && newX < m && newY >= 0 && newY < n && grid[newX][newY] == 1) {
                         freshCnt--;
                         grid[newX][newY] = 2;
                         q.push({newX, newY});
@@ -2032,7 +2041,7 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
+   public:
     bool canFinish(int numCourses, vector<vector<int>> &prerequisites) {
         vector<vector<int>> e(numCourses);
         vector<int> ind(numCourses);
@@ -2076,7 +2085,7 @@ class Solution {
 
 ```cpp
 class Trie {
-  public:
+   public:
     unordered_map<char, Trie *> children;
     bool isWord;
     Trie() { this->isWord = false; }
@@ -2132,12 +2141,13 @@ class Trie {
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<vector<int>> permute(vector<int>& nums) {
         dfs(nums, 0);
         return res;
     }
-private:
+
+   private:
     vector<vector<int>> res;
     void dfs(vector<int> nums, int x) {
         if (x == nums.size() - 1) {
@@ -2167,7 +2177,7 @@ private:
 
 ```cpp
 class Solution {
-  public:
+   public:
     vector<vector<int>> ans;
     void dfs(int start, int n, vector<int> &nums, vector<int> &path) {
         if (start >= n) {
@@ -2206,10 +2216,9 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
-    unordered_map<int, string> mp{{2, "abc"}, {3, "def"}, {4, "ghi"},
-                                  {5, "jkl"}, {6, "mno"}, {7, "pqrs"},
-                                  {8, "tuv"}, {9, "wxyz"}};
+   public:
+    unordered_map<int, string> mp{{2, "abc"}, {3, "def"},  {4, "ghi"}, {5, "jkl"},
+                                  {6, "mno"}, {7, "pqrs"}, {8, "tuv"}, {9, "wxyz"}};
     vector<string> ans;
     string path;
     void dfs(string digits, int i) {
@@ -2248,7 +2257,7 @@ class Solution {
 
 ```cpp
 class Solution {
-  public:
+   public:
     vector<vector<int>> ans;
     vector<int> path;
     void dfs(int start, vector<int> &candidates, int target) {
@@ -2289,7 +2298,7 @@ class Solution {
 
 ```cpp
 class Solution {
-private:
+   private:
     vector<string> ans;
     void dfs(string &path, int sum, int i, int n) {
         if (sum > (n >> 1)) return;
@@ -2304,7 +2313,8 @@ private:
             dfs(path, sum - 1, i + 1, n);
         }
     }
-public:
+
+   public:
     vector<string> generateParenthesis(int n) {
         string path(n * 2, ' ');
         dfs(path, 0, 0, n * 2);
@@ -2327,11 +2337,10 @@ public:
 
 ```cpp
 class Solution {
-  public:
+   public:
     int m, n, d[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
     bool isValid(int x, int y) { return x >= 0 && x < m && y >= 0 && y < n; }
-    bool dfs(vector<vector<char>> &board, string word, int x, int y, int i,
-             vector<vector<bool>> &vis) {
+    bool dfs(vector<vector<char>> &board, string word, int x, int y, int i, vector<vector<bool>> &vis) {
         if (!isValid(x, y) || (i < word.size() && board[x][y] != word[i])) {
             return false;
         }
@@ -2342,8 +2351,7 @@ class Solution {
         bool flag = false;
         for (int j = 0; j < 4; j++) {
             int newX = x + d[j][0], newY = y + d[j][1];
-            if (isValid(newX, newY) && !vis[newX][newY] &&
-                (flag = dfs(board, word, newX, newY, i + 1, vis))) {
+            if (isValid(newX, newY) && !vis[newX][newY] && (flag = dfs(board, word, newX, newY, i + 1, vis))) {
                 // 这里不能直接 return, 因为要恢复当前 (x, y) 的可访问性，dfs
                 // 的链路并不是单一链路，要支持回溯后二次搜索
                 break;
@@ -2387,8 +2395,7 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
-
+   public:
     bool memo[20][20];
     vector<vector<string>> ans;
 
@@ -2437,21 +2444,24 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<string>> ans;
         vector<string> board(n, string(n, '.'));
-        vector<int> col(n), d1(2*n), d2(2*n); // 列、主对角、副对角占用
+        vector<int> col(n), d1(2 * n), d2(2 * n);  // 列、主对角、副对角占用
         function<void(int)> dfs = [&](int r) {
-            if (r == n) { ans.push_back(board); return; }
+            if (r == n) {
+                ans.push_back(board);
+                return;
+            }
             for (int c = 0; c < n; c++) {
-                if (col[c] || d1[r-c+n] || d2[r+c]) continue;
+                if (col[c] || d1[r - c + n] || d2[r + c]) continue;
                 // 放置皇后并标记冲突线
                 board[r][c] = 'Q';
-                col[c] = d1[r-c+n] = d2[r+c] = 1;
+                col[c] = d1[r - c + n] = d2[r + c] = 1;
                 dfs(r + 1);
                 board[r][c] = '.';
-                col[c] = d1[r-c+n] = d2[r+c] = 0;
+                col[c] = d1[r - c + n] = d2[r + c] = 0;
             }
         };
         dfs(0);
@@ -2480,7 +2490,7 @@ public:
 
 ```cpp
 class Solution {
-  public:
+   public:
     // 找到第一个大于等于 target 的元素下标
     int searchInsert(vector<int> &nums, int target) {
         int n = nums.size(), l = 0, r = n - 1;
@@ -2513,7 +2523,7 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
+   public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         if (matrix.empty()) {
             return false;
@@ -2556,24 +2566,30 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<int> searchRange(vector<int>& nums, int target) {
         if (nums.empty()) return {-1, -1};
         int l = 0, r = nums.size() - 1, mid, start;
         while (l < r) {
             mid = (l + r) >> 1;
-            if (target < nums[mid]) r = mid - 1;
-            else if (target > nums[mid]) l = mid + 1;
-            else r = mid;
+            if (target < nums[mid])
+                r = mid - 1;
+            else if (target > nums[mid])
+                l = mid + 1;
+            else
+                r = mid;
         }
         if (nums[l] != target) return {-1, -1};
         start = l;
         l = 0, r = nums.size() - 1;
         while (l < r) {
             mid = (l + r + 1) >> 1;
-            if (target < nums[mid]) r = mid - 1;
-            else if (target > nums[mid]) l = mid + 1;
-            else l = mid;
+            if (target < nums[mid])
+                r = mid - 1;
+            else if (target > nums[mid])
+                l = mid + 1;
+            else
+                l = mid;
         }
         return {start, l};
     }
@@ -2594,18 +2610,22 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int search(vector<int>& nums, int target) {
         int l = 0, r = nums.size() - 1, mid;
         while (l <= r) {
             mid = (l + r) >> 1;
             if (nums[mid] == target) return mid;
             if (nums[mid] >= nums[0]) {
-                if (target > nums[mid] || target < nums[0]) l = mid + 1;
-                else r = mid - 1;
+                if (target > nums[mid] || target < nums[0])
+                    l = mid + 1;
+                else
+                    r = mid - 1;
             } else {
-                if (target <= nums[mid] || target > nums.back()) r = mid - 1;
-                else l = mid + 1;
+                if (target <= nums[mid] || target > nums.back())
+                    r = mid - 1;
+                else
+                    l = mid + 1;
             }
         }
         return -1;
@@ -2627,14 +2647,16 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int findMin(vector<int>& nums) {
         int l = 0, r = nums.size() - 1, mid;
         if (nums[r] >= nums[0]) return nums[0];
         while (l < r) {
             mid = (l + r) >> 1;
-            if (nums[mid] >= nums[0]) l = mid + 1;
-            else r = mid;
+            if (nums[mid] >= nums[0])
+                l = mid + 1;
+            else
+                r = mid;
         }
         return nums[l];
     }
@@ -2655,20 +2677,22 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     double findMedianSortedArrays(vector<int>& A, vector<int>& B) {
         if (A.size() > B.size()) return findMedianSortedArrays(B, A);
         int m = A.size(), n = B.size(), lo = 0, hi = m;
         while (lo <= hi) {
-            int i = (lo + hi) / 2;          // A 左半长度
-            int j = (m + n + 1) / 2 - i;   // B 左半长度，使左半总长 = 右半或右半+1
-            int Aleft = i ? A[i-1] : INT_MIN, Aright = i < m ? A[i] : INT_MAX;
-            int Bleft = j ? B[j-1] : INT_MIN, Bright = j < n ? B[j] : INT_MAX;
+            int i = (lo + hi) / 2;        // A 左半长度
+            int j = (m + n + 1) / 2 - i;  // B 左半长度，使左半总长 = 右半或右半+1
+            int Aleft = i ? A[i - 1] : INT_MIN, Aright = i < m ? A[i] : INT_MAX;
+            int Bleft = j ? B[j - 1] : INT_MIN, Bright = j < n ? B[j] : INT_MAX;
             if (Aleft <= Bright && Bleft <= Aright) {
                 if ((m + n) % 2) return max(Aleft, Bleft);
                 return (max(Aleft, Bleft) + min(Aright, Bright)) / 2.0;
-            } else if (Aleft > Bright) hi = i - 1;
-            else lo = i + 1;
+            } else if (Aleft > Bright)
+                hi = i - 1;
+            else
+                lo = i + 1;
         }
         return 0;
     }
@@ -2729,14 +2753,18 @@ class Solution {
 ```cpp
 class MinStack {
     stack<int> st, mn;
-public:
+
+   public:
     MinStack() {}
     void push(int val) {
         st.push(val);
         // 同步维护最小值栈
         mn.push(mn.empty() ? val : min(mn.top(), val));
     }
-    void pop() { st.pop(); mn.pop(); }
+    void pop() {
+        st.pop();
+        mn.pop();
+    }
     int top() { return st.top(); }
     int getMin() { return mn.top(); }
 };
@@ -2816,15 +2844,16 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
         int n = temperatures.size();
         vector<int> ans(n);
-        stack<int> st; // 存下标，栈内温度单调递减
+        stack<int> st;  // 存下标，栈内温度单调递减
         for (int i = 0; i < n; i++) {
             while (!st.empty() && temperatures[i] > temperatures[st.top()]) {
-                int j = st.top(); st.pop();
-                ans[j] = i - j; // 下一个更高温度的距离
+                int j = st.top();
+                st.pop();
+                ans[j] = i - j;  // 下一个更高温度的距离
             }
             st.push(i);
         }
@@ -2851,7 +2880,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     // 以每个 heights[i] 为高，计算以此为高能得到的最大面积
     // 问题转换为分别找到 heights[i] 左右两侧第一个比 heights[i] 矮的高度
     int largestRectangleArea(vector<int>& heights) {
@@ -2897,7 +2926,7 @@ public:
 
 ```cpp
 class Solution {
-  public:
+   public:
     int findKthLargest(vector<int> &nums, int k, int left, int right) {
         if (left >= right) {
             return nums[left];
@@ -2915,8 +2944,7 @@ class Solution {
         if (l == k) {
             return pivot;
         }
-        return l < k ? findKthLargest(nums, k, l + 1, right)
-                     : findKthLargest(nums, k, left, l - 1);
+        return l < k ? findKthLargest(nums, k, l + 1, right) : findKthLargest(nums, k, left, l - 1);
     }
     int findKthLargest(vector<int> &nums, int k) {
         if (nums.size() < k) {
@@ -2942,15 +2970,12 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         unordered_map<int, int> count;
         for (auto it : nums) count[it]++;
-        auto cmp = [](pair<int, int>& m, pair<int, int>& n) {
-            return m.second > n.second;
-        };
-        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)>
-            heap(cmp);
+        auto cmp = [](pair<int, int>& m, pair<int, int>& n) { return m.second > n.second; };
+        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> heap(cmp);
         for (auto& [num, cnt] : count) {
             if (heap.size() >= k) {
                 if (cnt > heap.top().second) {
@@ -2985,14 +3010,18 @@ public:
 
 ```cpp
 class MedianFinder {
-    priority_queue<int> lo; // 大根堆：较小一半
-    priority_queue<int, vector<int>, greater<int>> hi; // 小根堆：较大一半
-public:
+    priority_queue<int> lo;                             // 大根堆：较小一半
+    priority_queue<int, vector<int>, greater<int>> hi;  // 小根堆：较大一半
+   public:
     MedianFinder() {}
     void addNum(int num) {
         lo.push(num);
-        hi.push(lo.top()); lo.pop();
-        if (hi.size() > lo.size()) { lo.push(hi.top()); hi.pop(); }
+        hi.push(lo.top());
+        lo.pop();
+        if (hi.size() > lo.size()) {
+            lo.push(hi.top());
+            hi.pop();
+        }
     }
     double findMedian() {
         // 奇数时中位数在 lo.top()
@@ -3021,7 +3050,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int maxProfit(vector<int>& prices) {
         if (prices.size() <= 1) return 0;
         int n = prices.size(), ans = 0;
@@ -3049,7 +3078,7 @@ public:
 
 ```cpp
 class Solution {
-  public:
+   public:
     bool canJump(vector<int> &nums) {
         if (nums.size() <= 1) {
             return true;
@@ -3082,12 +3111,12 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
+   public:
     int jump(vector<int>& nums) {
         int end = 0, farthest = 0, steps = 0;
         for (int i = 0; i < (int)nums.size() - 1; i++) {
             farthest = max(farthest, i + nums[i]);
-            if (i == end) { // 到达当前跳跃覆盖的边界
+            if (i == end) {  // 到达当前跳跃覆盖的边界
                 steps++;
                 end = farthest;
             }
@@ -3115,7 +3144,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<int> partitionLabels(string s) {
         if (s.empty()) {
             return {};
@@ -3127,8 +3156,8 @@ public:
         int start = 0, end = 0;
         vector<int> ans;
         for (int i = 0; i < s.size(); i++) {
-            end = max(end, last[s[i]]); // 不断扩展最大右区间
-            if (end == i) { // 直到当前字母的最大位置等于当前位置，说明已经不能扩展了
+            end = max(end, last[s[i]]);  // 不断扩展最大右区间
+            if (end == i) {  // 直到当前字母的最大位置等于当前位置，说明已经不能扩展了
                 ans.push_back(end - start + 1);
                 start = end + 1;
             }
@@ -3158,7 +3187,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int memo[50] = {0};
     int climbStairs(int n) {
         if (n <= 2) return n;
@@ -3182,7 +3211,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     vector<vector<int>> generate(int numRows) {
         vector<vector<int>> ans;
         if (numRows == 0) return ans;
@@ -3216,7 +3245,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int rob(vector<int>& nums) {
         if (nums.size() <= 1) return nums[0];
         int n = nums.size();
@@ -3225,7 +3254,8 @@ public:
         for (int i = 2; i < n; i++) {
             int t = max(a + nums[i], b);
             ans = max(ans, t);
-            a = b; b = t;
+            a = b;
+            b = t;
         }
         return ans;
     }
@@ -3246,7 +3276,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int numSquares(int n) {
         vector<int> dp(n + 1, INT_MAX);
         dp[0] = 0;
@@ -3279,8 +3309,8 @@ public:
 
 ```cpp
 class Solution {
-public:
-    int dfs(int amount, vector<int> &v, int* memo) {
+   public:
+    int dfs(int amount, vector<int>& v, int* memo) {
         if (amount == 0) return 0;
         if (amount < 0) return -1;
         if (memo[amount] != -2) return memo[amount];
@@ -3315,7 +3345,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     bool wordBreak(string s, vector<string>& wordDict) {
         unordered_set<string> dict(wordDict.begin(), wordDict.end());
         int n = s.size();
@@ -3325,7 +3355,8 @@ public:
             for (int j = 0; j < i; j++) {
                 // s[0..j) 可拆且 s[j..i) 在字典中
                 if (dp[j] && dict.count(s.substr(j, i - j))) {
-                    dp[i] = true; break;
+                    dp[i] = true;
+                    break;
                 }
             }
         }
@@ -3352,7 +3383,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int lengthOfLIS(vector<int>& nums) {
         int n = nums.size(), len = 1;
         if (n == 1) return 1;
@@ -3365,8 +3396,10 @@ public:
                 int l = 1, r = len, mid = 0;
                 while (l < r) {
                     mid = (l + r) >> 1;
-                    if (d[mid] >= nums[i]) r = mid;
-                    else l = mid + 1;
+                    if (d[mid] >= nums[i])
+                        r = mid;
+                    else
+                        l = mid + 1;
                 }
                 if (d[l] > nums[i]) d[l] = nums[i];
             }
@@ -3390,7 +3423,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int maxProduct(vector<int>& nums) {
         int n = nums.size(), maxF, minF, ans;
         ans = maxF = minF = nums[0];
@@ -3419,7 +3452,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     bool canPartition(vector<int>& nums) {
         int sum = 0;
         for (auto x : nums) sum += x;
@@ -3450,17 +3483,20 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int longestValidParentheses(string s) {
         stack<int> st;
-        st.push(-1); // 基准下标
+        st.push(-1);  // 基准下标
         int ans = 0;
         for (int i = 0; i < (int)s.size(); i++) {
-            if (s[i] == '(') st.push(i);
+            if (s[i] == '(')
+                st.push(i);
             else {
                 st.pop();
-                if (st.empty()) st.push(i); // 新的无效基准
-                else ans = max(ans, i - st.top());
+                if (st.empty())
+                    st.push(i);  // 新的无效基准
+                else
+                    ans = max(ans, i - st.top());
             }
         }
         return ans;
@@ -3585,16 +3621,22 @@ class Solution {
 
 ```cpp
 class Solution {
-public:
+   public:
     string longestPalindrome(string s) {
         int n = s.size(), start = 0, len = 1;
         auto expand = [&](int l, int r) {
-            while (l >= 0 && r < n && s[l] == s[r]) { l--; r++; }
-            if (r - l - 1 > len) { start = l + 1; len = r - l - 1; }
+            while (l >= 0 && r < n && s[l] == s[r]) {
+                l--;
+                r++;
+            }
+            if (r - l - 1 > len) {
+                start = l + 1;
+                len = r - l - 1;
+            }
         };
         for (int i = 0; i < n; i++) {
-            expand(i, i);     // 奇数中心
-            expand(i, i + 1); // 偶数中心
+            expand(i, i);      // 奇数中心
+            expand(i, i + 1);  // 偶数中心
         }
         return s.substr(start, len);
     }
@@ -3619,16 +3661,16 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int longestCommonSubsequence(string text1, string text2) {
         int m = text1.size(), n = text2.size();
         vector<vector<int>> dp(m + 1, vector<int>(n + 1));
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
-                if (text1[i-1] == text2[j-1])
-                    dp[i][j] = dp[i-1][j-1] + 1; // 字符相同则延长
+                if (text1[i - 1] == text2[j - 1])
+                    dp[i][j] = dp[i - 1][j - 1] + 1;  // 字符相同则延长
                 else
-                    dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
             }
         }
         return dp[m][n];
@@ -3654,7 +3696,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int minDistance(string word1, string word2) {
         int m = word1.size(), n = word2.size();
         vector<vector<int>> dp(m + 1, vector<int>(n + 1));
@@ -3662,9 +3704,10 @@ public:
         for (int j = 0; j <= n; j++) dp[0][j] = j;
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
-                if (word1[i-1] == word2[j-1]) dp[i][j] = dp[i-1][j-1];
-                else // 替换 / 删除 / 插入
-                    dp[i][j] = 1 + min({dp[i-1][j-1], dp[i-1][j], dp[i][j-1]});
+                if (word1[i - 1] == word2[j - 1])
+                    dp[i][j] = dp[i - 1][j - 1];
+                else  // 替换 / 删除 / 插入
+                    dp[i][j] = 1 + min({dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]});
             }
         }
         return dp[m][n];
@@ -3692,7 +3735,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int singleNumber(vector<int>& nums) {
         int ret = 0;
         for (auto e : nums) ret ^= e;
@@ -3715,13 +3758,17 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int majorityElement(vector<int>& nums) {
         int cnt = 0, pre;
         for (int x : nums) {
-            if (cnt == 0) { pre = x; cnt++; }
-            else if (pre == x) cnt++;
-            else cnt--;
+            if (cnt == 0) {
+                pre = x;
+                cnt++;
+            } else if (pre == x)
+                cnt++;
+            else
+                cnt--;
         }
         return pre;
     }
@@ -3742,13 +3789,16 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     void sortColors(vector<int>& nums) {
         int l = 0, r = nums.size() - 1, i = 0;
         while (i <= r) {
-            if (nums[i] == 0) swap(nums[i++], nums[l++]); // 0 换到左边
-            else if (nums[i] == 2) swap(nums[i], nums[r--]); // 2 换到右边，i 不增
-            else i++;
+            if (nums[i] == 0)
+                swap(nums[i++], nums[l++]);  // 0 换到左边
+            else if (nums[i] == 2)
+                swap(nums[i], nums[r--]);  // 2 换到右边，i 不增
+            else
+                i++;
         }
     }
 };
@@ -3772,7 +3822,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     void nextPermutation(vector<int>& nums) {
         int n = nums.size(), i = n - 2;
         // 从右找第一个升序对 nums[i] < nums[i+1]
@@ -3782,7 +3832,7 @@ public:
             while (nums[j] <= nums[i]) j--;
             swap(nums[i], nums[j]);
         }
-        reverse(nums.begin() + i + 1, nums.end()); // 后缀改为升序
+        reverse(nums.begin() + i + 1, nums.end());  // 后缀改为升序
     }
 };
 ```
@@ -3805,7 +3855,7 @@ public:
 
 ```cpp
 class Solution {
-public:
+   public:
     int findDuplicate(vector<int>& nums) {
         // 弗洛伊德判环：下标视为 next 指针
         int slow = 0, fast = 0;

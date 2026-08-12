@@ -63,7 +63,7 @@ int main() { return 0; }
 从每个字母开始dfs搜索所有可能的单词，然后在遍历过程中，判断这个单词是否在字典树中出现过。
 */
 class Solution {
-  public:
+   public:
     struct Node {
         string word;
         bool isWord = false;
@@ -85,8 +85,7 @@ class Solution {
     set<string> st;
     string path;
     int m, n, d[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-    void dfs(vector<vector<char>> &board, int x, int y,
-             vector<vector<bool>> &vis, Node *node) {
+    void dfs(vector<vector<char>> &board, int x, int y, vector<vector<bool>> &vis, Node *node) {
         if (!node->children.count(board[x][y])) {
             return;
         }
@@ -97,15 +96,13 @@ class Solution {
         vis[x][y] = true;
         for (int i = 0; i < 4; i++) {
             int newX = x + d[i][0], newY = y + d[i][1];
-            if (newX >= 0 && newX < m && newY >= 0 && newY < n &&
-                !vis[newX][newY]) {
+            if (newX >= 0 && newX < m && newY >= 0 && newY < n && !vis[newX][newY]) {
                 dfs(board, newX, newY, vis, tmp);
             }
         }
         vis[x][y] = false;
     }
-    vector<string> findWords(vector<vector<char>> &board,
-                             vector<string> &words) {
+    vector<string> findWords(vector<vector<char>> &board, vector<string> &words) {
         if (board.empty()) {
             return {};
         }

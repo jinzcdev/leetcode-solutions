@@ -60,7 +60,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     vector<int> maxSlidingWindow(vector<int> &nums, int k) {
         if (nums.empty()) {
             return {};

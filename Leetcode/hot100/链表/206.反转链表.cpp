@@ -67,7 +67,7 @@ struct ListNode {
 };
 // @lc code=start
 class Solution {
-  public:
+   public:
     ListNode *reverseList(ListNode *head) {
         ListNode *pre = nullptr, *p = head;
         while (p != nullptr) {

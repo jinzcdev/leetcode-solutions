@@ -60,7 +60,7 @@ struct ListNode {
 };
 // @lc code=start
 class Solution {
-  public:
+   public:
     ListNode *swapPairs(ListNode *head) {
         if (head == nullptr || head->next == nullptr) {
             return head;

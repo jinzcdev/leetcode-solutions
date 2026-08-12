@@ -16,7 +16,7 @@
 class Solution {
 
     int max = Integer.MIN_VALUE;
-    
+
     private int dfs(TreeNode root) {
         if (root == null) {
             return 0;

@@ -54,7 +54,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     vector<int> findAnagrams(string s, string p) {
         vector<int> ans;
         if (p.size() > s.size()) {

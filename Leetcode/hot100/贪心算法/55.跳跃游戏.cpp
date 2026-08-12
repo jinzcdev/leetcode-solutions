@@ -53,7 +53,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     bool canJump(vector<int> &nums) {
         if (nums.size() <= 1) {
             return true;

@@ -63,12 +63,11 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     int m, n;
     bool vis[510][510] = {false};
     bool isValid(int x, int y) { return x >= 0 && x < m && y >= 0 && y < n; }
-    void dfs(vector<vector<int>> &grid1, vector<vector<int>> &grid2, int x,
-             int y, bool &flag) {
+    void dfs(vector<vector<int>> &grid1, vector<vector<int>> &grid2, int x, int y, bool &flag) {
         if (!isValid(x, y) || grid2[x][y] == 0 || vis[x][y]) {
             return;
         }
@@ -81,8 +80,7 @@ class Solution {
         dfs(grid1, grid2, x, y + 1, flag);
         dfs(grid1, grid2, x, y - 1, flag);
     }
-    int countSubIslands(vector<vector<int>> &grid1,
-                        vector<vector<int>> &grid2) {
+    int countSubIslands(vector<vector<int>> &grid1, vector<vector<int>> &grid2) {
         m = grid2.size();
         n = grid2[0].size();
         int ans = 0;

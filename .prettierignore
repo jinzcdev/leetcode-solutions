@@ -1,0 +1,16 @@
+.git
+.codegraph
+.idea
+node_modules
+*.dSYM
+**/a.out
+tmp
+package-lock.json
+
+# C/C++ 由 clang-format 处理（Prettier 不支持）
+*.c
+*.h
+*.cc
+*.cpp
+*.cxx
+*.hpp

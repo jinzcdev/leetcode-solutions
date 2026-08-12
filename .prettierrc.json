@@ -1,0 +1,23 @@
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": false,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "proseWrap": "preserve",
+  "htmlWhitespaceSensitivity": "css",
+  "endOfLine": "lf",
+  "plugins": ["prettier-plugin-java"],
+  "overrides": [
+    {
+      "files": "*.java",
+      "options": {
+        "tabWidth": 4,
+        "printWidth": 120,
+        "trailingComma": "none"
+      }
+    }
+  ]
+}

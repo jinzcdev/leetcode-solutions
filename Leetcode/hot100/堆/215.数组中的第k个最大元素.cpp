@@ -49,7 +49,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     int findKthLargest(vector<int> &nums, int k, int left, int right) {
         if (left >= right) {
             return nums[left];
@@ -67,8 +67,7 @@ class Solution {
         if (l == k) {
             return pivot;
         }
-        return l < k ? findKthLargest(nums, k, l + 1, right)
-                     : findKthLargest(nums, k, left, l - 1);
+        return l < k ? findKthLargest(nums, k, l + 1, right) : findKthLargest(nums, k, left, l - 1);
     }
     int findKthLargest(vector<int> &nums, int k) {
         if (nums.size() < k) {

@@ -23,7 +23,7 @@ int main() { return 0; }
  * };
  */
 class Solution {
-  public:
+   public:
     TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
         if (root == nullptr || root == p || root == q) {
             return root;

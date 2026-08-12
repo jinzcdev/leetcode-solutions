@@ -1,2 +1,2 @@
 - [首页](README.md)
-- [Hot 100 题解（C++）](Leetcode/LeetCode-Hot100-CPP.md)
+- [Hot 100 题解（C++）](Leetcode/hot100/LeetCode-Hot100-CPP.md)

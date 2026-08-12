@@ -64,7 +64,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     string minWindow(string s, string t) {
         if (s.size() < t.size()) {
             return "";

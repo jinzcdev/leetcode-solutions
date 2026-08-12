@@ -67,7 +67,7 @@ struct ListNode {
 };
 // @lc code=start
 class Solution {
-  public:
+   public:
     ListNode *sortList(ListNode *head) {
         if (!head || !head->next) {
             return head;
@@ -81,7 +81,7 @@ class Solution {
             fast = fast->next->next;
         }
         ListNode *mid = slow->next;
-        slow->next = nullptr; // 断开两个链表
+        slow->next = nullptr;  // 断开两个链表
         return merge(sortList(head), sortList(mid));
     }
     ListNode *merge(ListNode *a, ListNode *b) {

@@ -64,7 +64,7 @@ using namespace std;
 int main() { return 0; }
 // @lc code=start
 class Solution {
-  public:
+   public:
     vector<vector<bool>> vis;
     int m, n;
     bool isValid(int x, int y) { return x >= 0 && x < m && y >= 0 && y < n; }
