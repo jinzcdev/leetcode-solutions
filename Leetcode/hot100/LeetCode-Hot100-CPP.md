@@ -2438,7 +2438,7 @@ class Solution {
 
 ### 8. N 皇后
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/n-queens/) | 🔴 困难 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/n-queens/) | 🔴 困难
 
 **题目描述：** 按照国际象棋的规则，皇后可以攻击与之处在同一行或同一列或同一斜线上的棋子。n 皇后问题 研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。给你一个整数 n ，返回所有不同的 n 皇后问题 的解决方案。
 
@@ -2671,7 +2671,7 @@ class Solution {
 
 ### 6. 寻找两个正序数组的中位数
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/median-of-two-sorted-arrays/) | 🔴 困难 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/median-of-two-sorted-arrays/) | 🔴 困难
 
 **题目描述：** 给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的中位数。算法的时间复杂度应该为 O(log (m+n)) 。
 
@@ -3004,7 +3004,7 @@ class Solution {
 
 ### 3. 数据流的中位数
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/find-median-from-data-stream/) | 🔴 困难 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/find-median-from-data-stream/) | 🔴 困难
 
 **题目描述：** 中位数是有序整数列表中的中间值。如果列表的大小是偶数，则没有中间值，中位数是两个中间值的平均值。实现 MedianFinder 类：MedianFinder() 初始化；void addNum(int num) 将数据流中的整数 num 添加到数据结构中；double findMedian() 返回目前所有元素的中位数。
 
@@ -3270,7 +3270,7 @@ class Solution {
 
 ### 4. 完全平方数
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/perfect-squares/) | 🟡 中等 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/perfect-squares/) | 🟡 中等
 
 **题目描述：** 给你一个整数 n ，返回和为 n 的完全平方数的最少数量。完全平方数是一个整数，其值等于另一个整数的平方。
 
@@ -3339,7 +3339,7 @@ class Solution {
 
 ### 6. 单词拆分
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/word-break/) | 🟡 中等 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/word-break/) | 🟡 中等
 
 **题目描述：** 给你一个字符串 s 和一个字符串列表 wordDict 作为字典。如果可以利用字典中出现的一个或多个单词拼接出 s 则返回 true。注意：不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。
 
@@ -3477,7 +3477,7 @@ class Solution {
 
 ### 10. 最长有效括号
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/longest-valid-parentheses/) | 🔴 困难 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/longest-valid-parentheses/) | 🔴 困难
 
 **题目描述：** 给你一个只包含 '(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度。
 
@@ -3615,7 +3615,7 @@ class Solution {
 
 ### 3. 最长回文子串
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/longest-palindromic-substring/) | 🟡 中等 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/longest-palindromic-substring/) | 🟡 中等
 
 **题目描述：** 给你一个字符串 s，找到 s 中最长的回文子串。
 
@@ -3655,7 +3655,7 @@ class Solution {
 
 ### 4. 最长公共子序列
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/longest-common-subsequence/) | 🟡 中等 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/longest-common-subsequence/) | 🟡 中等
 
 **题目描述：** 给定两个字符串 text1 和 text2，返回这两个字符串的最长公共子序列的长度。若不存在公共子序列，返回 0。
 
@@ -3690,7 +3690,7 @@ class Solution {
 
 ### 5. 编辑距离
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/edit-distance/) | 🟡 中等 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/edit-distance/) | 🟡 中等
 
 **题目描述：** 给你两个单词 word1 和 word2，请返回将 word1 转换成 word2 所使用的最少操作数。你可以对一个单词进行如下三种操作：插入一个字符、删除一个字符、替换一个字符。
 
@@ -3783,7 +3783,7 @@ class Solution {
 
 ### 3. 颜色分类
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/sort-colors/) | 🟡 中等 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/sort-colors/) | 🟡 中等
 
 **题目描述：** 给定一个包含红色、白色和蓝色、共 n 个元素的数组 nums ，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。我们使用整数 0、1 和 2 分别表示红色、白色和蓝色。必须在不使用库内置的 sort 函数的情况下解决这个问题。
 
@@ -3816,7 +3816,7 @@ class Solution {
 
 ### 4. 下一个排列
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/next-permutation/) | 🟡 中等 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/next-permutation/) | 🟡 中等
 
 **题目描述：** 整数数组的一个排列就是将其所有成员以序列或线性顺序排列。下一个排列是指其整数的下一个字典序更大的排列。如果不存在下一个更大的排列，则必须将数组重新排列为字典序最小的排列（即升序排列）。必须原地修改，只允许使用额外常数空间。
 
@@ -3849,7 +3849,7 @@ class Solution {
 
 ### 5. 寻找重复数
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/find-the-duplicate-number/) | 🟡 中等 | ⚠️ **未 AC**（参考题解）
+[🔗 LeetCode 原题](https://leetcode.cn/problems/find-the-duplicate-number/) | 🟡 中等
 
 **题目描述：** 给定一个包含 n + 1 个整数的数组 nums ，其数字都在 [1, n] 范围内（包括 1 和 n），可知至少存在一个重复的整数。假设 nums 只有一个重复的整数，返回这个重复的数。你设计的解决方案必须不修改数组 nums 且只用常量级 O(1) 的额外空间。
 
