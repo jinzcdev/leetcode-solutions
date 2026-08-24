@@ -48,32 +48,27 @@ int main() { return 0; }
 // @lc code=start
 class Solution {
    public:
-    pair<int, int> solve(string &s, int left, int right) {
+    int start, maxLen = 1;
+    void solve(string &s, int left, int right) {
         int l = left, r = right;
         while (l >= 0 && r < s.size() && s[l] == s[r]) {
             l--;
             r++;
         }
-        return {l + 1, r - 1};
+        if (r - l - 1 > maxLen) {
+            maxLen = r - l - 1;
+            start = l + 1;
+        }
     }
     string longestPalindrome(string s) {
         if (s.empty()) {
             return "";
         }
-        int ans = 1, left = 0, right = 0;
-        for (int i = 1; i < s.size(); i++) {
-            auto [l1, r1] = solve(s, i - 1, i);
-            auto [l2, r2] = solve(s, i, i);
-            if (r1 - l1 > right - left) {
-                left = l1;
-                right = r1;
-            }
-            if (r2 - l2 > right - left) {
-                left = l2;
-                right = r2;
-            }
+        for (int i = 0; i < s.size(); i++) {
+            solve(s, i, i + 1);
+            solve(s, i, i);
         }
-        return s.substr(left, right - left + 1);
+        return s.substr(start, maxLen);
     }
 };
 // @lc code=end
