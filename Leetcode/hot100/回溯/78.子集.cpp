@@ -13,8 +13,7 @@
  * Total Submissions: 1.6M
  * Testcase Example:  '[1,2,3]'
  *
- * 给你一个整数数组 nums ，数组中的元素 互不相同
- * 。返回该数组所有可能的子集（幂集）。
+ * 给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。
  *
  * 解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。
  *
@@ -52,24 +51,19 @@ int main() { return 0; }
 class Solution {
    public:
     vector<vector<int>> ans;
-    void dfs(int start, int n, vector<int> &nums, vector<int> &path) {
-        if (start >= n) {
+    vector<int> path;
+    void dfs(vector<int>& nums, int i) {
+        if (i == nums.size()) {
             ans.push_back(path);
             return;
         }
-        ans.push_back(path);
-        for (int i = start; i < n; i++) {
-            path.push_back(nums[i]);
-            dfs(i + 1, n, nums, path);
-            path.pop_back();
-        }
+        path.push_back(nums[i]);
+        dfs(nums, i + 1);
+        path.pop_back();
+        dfs(nums, i + 1);
     }
-    vector<vector<int>> subsets(vector<int> &nums) {
-        if (nums.empty()) {
-            return {};
-        }
-        vector<int> path;
-        dfs(0, nums.size(), nums, path);
+    vector<vector<int>> subsets(vector<int>& nums) {
+        dfs(nums, 0);
         return ans;
     }
 };
