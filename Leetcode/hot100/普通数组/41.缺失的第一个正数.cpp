@@ -75,4 +75,28 @@ class Solution {
         return n + 1;
     }
 };
+
+class SolutionMark {
+   public:
+    int firstMissingPositive(vector<int>& nums) {
+        int n = nums.size();
+        for (int i = 0; i < n; i++) {
+            if (1 > nums[i] || nums[i] > n) {
+                nums[i] = INT_MAX;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            int t = abs(nums[i]);
+            if (1 <= t && t <= n) {
+                nums[t - 1] = -abs(nums[t - 1]);
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > 0) {
+                return i + 1;
+            }
+        }
+        return n + 1;
+    }
+};
 // @lc code=end

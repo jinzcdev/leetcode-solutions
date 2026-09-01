@@ -670,6 +670,32 @@ class Solution {
         return n + 1;
     }
 };
+/*
+标记法
+*/
+class SolutionMark {
+   public:
+    int firstMissingPositive(vector<int>& nums) {
+        int n = nums.size();
+        for (int i = 0; i < n; i++) {
+            if (1 > nums[i] || nums[i] > n) {
+                nums[i] = INT_MAX;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            int t = abs(nums[i]);
+            if (1 <= t && t <= n) {
+                nums[t - 1] = -abs(nums[t - 1]);
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > 0) {
+                return i + 1;
+            }
+        }
+        return n + 1;
+    }
+};
 ```
 
 **核心思路：** 原地哈希：将 nums[i] 放到 nums[nums[i]-1] 的位置（当 1 <= nums[i] <= n 时），然后遍历找第一个 nums[i] != i+1。
@@ -2323,7 +2349,7 @@ class Solution {
 };
 ```
 
-**核心思路：** 回溯：维护当前左括号数 sum。左括号数 < n 时可加 '('，sum > 0 时可加 ')'。最终 sum == 0 时得到有效组合。
+**核心思路：** 回溯：从索引 0 开始，搜索每种可能的括号取值，每个位置可以选择左括号或者右括号；搜索中维护当前左括号数 sum。左括号数 < n 时可加 '('，sum > 0 时可加 ')' 以保证括号的正确性。到达搜索边界后，最终 sum == 0 时得到有效组合。
 
 **易错点：** sum 同时表示未匹配的左括号数；条件 sum > (n>>1) 可提前剪枝。
 
