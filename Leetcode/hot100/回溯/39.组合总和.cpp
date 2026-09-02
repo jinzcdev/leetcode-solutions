@@ -67,7 +67,7 @@ class Solution {
    public:
     vector<vector<int>> ans;
     vector<int> path;
-    void dfs(int start, vector<int> &candidates, int target) {
+    void dfs(int start, vector<int>& candidates, int target) {
         if (target == 0) {
             ans.push_back(path);
             return;
@@ -81,11 +81,36 @@ class Solution {
             path.pop_back();
         }
     }
-    vector<vector<int>> combinationSum(vector<int> &candidates, int target) {
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         if (candidates.empty()) {
             return {};
         }
         dfs(0, candidates, target);
+        return ans;
+    }
+};
+/*
+
+*/
+class Solution01 {
+   public:
+    vector<vector<int>> ans;
+    vector<int> path;
+    void dfs(vector<int>& candidates, int i, int target) {
+        if (target == 0) {
+            ans.push_back(path);
+            return;
+        }
+        if (target < 0 || i == candidates.size()) {
+            return;
+        }
+        path.push_back(candidates[i]);
+        dfs(candidates, i, target - candidates[i]);
+        path.pop_back();
+        dfs(candidates, i + 1, target);
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        dfs(candidates, 0, target);
         return ans;
     }
 };

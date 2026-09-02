@@ -2277,9 +2277,11 @@ class Solution {
 
 ### 4. 组合总和
 
-[🔗 LeetCode 原题](https://leetcode.cn/problems/combination-sum/) | 🟡 中等
+https://leetcode.cn/problems/combination-sum/ | 🟡 中等
 
 **题目描述：** 给你一个无重复元素的整数数组 candidates 和一个目标整数 target，找出 candidates 中可以使数字和为目标数 target 的所有不同组合，并以列表形式返回。candidates 中的同一个数字可以无限制重复被选取。
+
+#### 解法一：多叉树（循环展开）
 
 ```cpp
 class Solution {
@@ -2313,6 +2315,51 @@ class Solution {
 **核心思路：** 回溯：从 start 开始遍历，避免重复组合。每次可以选择当前元素（不移动 start）或跳过（移动 start）。
 
 **易错点：** 元素可重复选取，所以递归时 start 不变；target < 0 时剪枝。
+
+#### 解法二：二叉树（选/不选）
+
+```cpp
+class Solution {
+   public:
+    vector<vector<int>> ans;
+    vector<int> path;
+    void dfs(vector<int>& candidates, int i, int target) {
+        if (target == 0) {
+            ans.push_back(path);
+            return;
+        }
+        if (target < 0 || i == candidates.size()) {
+            return;
+        }
+        // 选当前元素（可重复选，所以 i 不变）
+        path.push_back(candidates[i]);
+        dfs(candidates, i, target - candidates[i]);
+        path.pop_back();
+
+        // 跳过当前元素（移动到下一个）
+        dfs(candidates, i + 1, target);
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        dfs(candidates, 0, target);
+        return ans;
+    }
+};
+```
+
+**核心思路：** 二叉树回溯，每个元素只有两种选择：选或不选。选则递归到同一位置（可重复选取），不选则移动到下一个元素。
+
+**两种解法的对比：**
+
+| 特性           | 解法一（多叉树）         | 解法二（二叉树）            |
+| -------------- | ------------------------ | --------------------------- |
+| **决策方式**   | 一次性考虑所有可选元素   | 每次只考虑一个元素的选/不选 |
+| **搜索树形状** | 多叉树                   | 二叉树                      |
+| **递归深度**   | 受限于 target 大小       | 受限于 candidates 长度      |
+| **时间复杂度** | O(n^(T/min_val))         | O(2^n)                      |
+| **空间复杂度** | O(T/min_val)             | O(n)                        |
+| **适用场景**   | target 小、candidates 多 | candidates 短、target 大    |
+
+**推荐：** 一般情况下解法一更优，剪枝效果更好，实际运行速度更快。
 
 ---
 
