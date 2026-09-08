@@ -2187,6 +2187,36 @@ class Solution {
         }
     }
 };
+
+class SolutionDFS {
+   public:
+    vector<vector<int>> ans;
+    vector<int> path;
+    unordered_map<int, bool> vis;
+    void dfs(vector<int>& nums, int idx) {
+        if (idx == nums.size()) {
+            ans.push_back(path);
+            return;
+        }
+        for (int i = 0; i < nums.size(); i++) {
+            if (vis[i]) {
+                continue;
+            }
+            path[idx] = nums[i];
+            vis[i] = true;
+            dfs(nums, idx + 1);
+            vis[i] = false;
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        if (nums.empty()) {
+            return {};
+        }
+        path.resize(nums.size());
+        dfs(nums, 0);
+        return ans;
+    }
+};
 ```
 
 **核心思路：** 回溯：swap 法，固定第 x 位，依次将后面的元素交换到 x 位置，递归处理 x+1，然后恢复交换。
