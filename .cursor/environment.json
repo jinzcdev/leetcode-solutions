@@ -1,0 +1,17 @@
+{
+  "name": "leetcode-solutions",
+  "install": "sudo apt-get update && sudo apt-get install -y clang-format && npm config set prefix \"$HOME/.npm-global\" && npm install -g docsify-cli@latest --ignore-scripts",
+  "terminals": [
+    {
+      "name": "docsify",
+      "command": "export PATH=\"$HOME/.npm-global/bin:$PATH\" && docsify serve . --port 3000",
+      "description": "Docsify documentation site (LeetCode solutions), served at http://localhost:3000"
+    }
+  ],
+  "ports": [
+    {
+      "name": "docsify",
+      "port": 3000
+    }
+  ]
+}
