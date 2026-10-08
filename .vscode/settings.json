@@ -37,6 +37,6 @@
   },
   "clang-format.executable": "${workspaceFolder}/node_modules/.bin/clang-format",
   "clang-format.style": "file",
-  "C_Cpp.formatting": "disabled",
+  // "C_Cpp.formatting": "disabled",
   "java.format.enabled": false
 }
